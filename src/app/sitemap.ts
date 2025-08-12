@@ -4,7 +4,7 @@ import { cities } from '../lib/cities';
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://potolki.ru';
+  const baseUrl = 'https://rustamgq.github.io/potolok';
   
   // Основные страницы
   const staticPages = [

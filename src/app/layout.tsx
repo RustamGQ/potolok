@@ -20,9 +20,18 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://rustamgq.github.io'),
   title: "Натяжные потолки в Ростове-на-Дону - Установка от 405₽/м² | ПОТОЛКИ",
   description: "Натяжные потолки в Ростове-на-Дону от профессионалов. Бесплатный замер, монтаж за 1 день, гарантия 15 лет. Цены от 405₽/м². Звоните!",
   keywords: "натяжные потолки ростов, потолки ростов, установка потолков ростов, натяжные потолки батайск, потолки аксай, цены на потолки",
+  openGraph: {
+    type: 'website',
+    locale: 'ru_RU',
+    siteName: 'ПОТОЛКИ',
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 };
 
 export default function RootLayout({
