@@ -1,0 +1,1153 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+
+.orderForm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(20px);
+}
+
+.orderForm {
+  background: white;
+  border-radius: rem(24px);
+  box-shadow: 0 rem(32px) rem(64px) rgba(0, 0, 0, 0.2);
+  max-width: rem(600px);
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+
+  // Красивая синяя полоса прокрутки для Chrome, Edge, Safari
+  &::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba($blue-color, 0.35) 0%, rgba($blue-color, 0.65) 100%);
+    border-radius: 8px;
+    border: 2px solid rgba(255,255,255,0.15);
+    background-clip: padding-box;
+    transition: background 0.2s;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba($blue-color, 0.55) 0%, rgba($blue-color, 0.85) 100%);
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba($blue-color, 0.08);
+    border-radius: 8px;
+  }
+
+  // Для Firefox
+  scrollbar-width: thin;
+  scrollbar-color: rgba($blue-color, 0.55) rgba($blue-color, 0.08);
+}
+
+.orderForm__header {
+  padding: rem(40px) rem(40px) rem(20px);
+  border-bottom: 1px solid rgba($blue-color, 0.1);
+  background: none;
+  border-radius: 0;
+  text-align: center;
+  h2 {
+    font-size: rem(32px);
+    font-weight: 800;
+    color: $text-color;
+    margin-bottom: rem(8px);
+  }
+  p {
+    font-size: rem(16px);
+    color: $text-secondary;
+    margin: 0;
+  }
+}
+
+.orderForm__progress {
+  display: flex;
+  padding: rem(20px) rem(40px);
+  border-bottom: 1px solid rgba($blue-color, 0.1);
+  background: rgba($blue-color, 0.02);
+}
+
+.orderForm__close {
+  position: sticky;
+  top: 0;
+  right: 0;
+  margin: rem(18px);
+  z-index: 10;
+  background: transparent;
+  color: $blue-color;
+  border: none;
+  font-size: rem(34px);
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+  padding: 0;
+  float: right;
+  &:hover {
+    color: color.adjust($blue-color, $lightness: -10%);
+  }
+}
+
+.orderForm__form {
+  padding: rem(40px);
+}
+
+.orderForm__field {
+  margin-bottom: rem(24px);
+  label {
+    display: block;
+    font-size: rem(14px);
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: rem(8px);
+  }
+}
+
+.orderForm__services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(rem(180px), 1fr));
+  gap: rem(12px);
+}
+
+.orderForm__service {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid rgba($blue-color, 0.1);
+  border-radius: rem(12px);
+  padding: rem(16px);
+  transition: all 0.3s ease;
+  background: rgba(12, 64, 235, 0.123);
+  &.selected {
+    border-color: $blue-color;
+    background: rgba($blue-color, 0.05);
+    box-shadow: 0 0 0 3px rgba($blue-color, 0.1);
+  }
+  &:hover {
+    border-color: rgba($blue-color, 0.3);
+    transform: translateY(-2px);
+  }
+}
+
+.orderForm__service-name {
+  font-size: rem(16px);
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: rem(4px);
+  color: #c5d3f0d7;
+}
+.orderForm__service-price {
+  font-size: rem(12px);
+  color: $blue-color;
+  font-weight: 600;
+}
+
+.orderForm__input,
+.orderForm__select,
+.orderForm__textarea {
+  width: 100%;
+  padding: rem(14px) rem(16px);
+  border: 2px solid rgba($blue-color, 0.1);
+  border-radius: rem(12px);
+  font-size: rem(16px);
+  transition: all 0.3s ease;
+  background: rgba(12, 64, 235, 0.123);
+  color: #c5d3f0d7;
+  line-height: 1.4;
+  
+  &:focus {
+    outline: none;
+    border-color: $blue-color;
+    box-shadow: 0 0 0 3px rgba($blue-color, 0.1);
+  }
+  
+  &::placeholder {
+    color: $text-secondary;
+    opacity: 0.7;
+  }
+  
+  // Улучшение читаемости на мобильных
+  @media (max-width: 480px) {
+    font-size: rem(16px); // Предотвращаем зум на iOS
+    line-height: 1.3;
+  }
+
+  // Кастомные стили для числового поля (убираем стандартные стрелочки)
+  &[type="number"] {
+    -moz-appearance: textfield; // Firefox
+    appearance: textfield;
+    
+    // Убираем стандартные стрелочки в WebKit браузерах
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
+
+// Кастомные кнопки для числового поля
+.number-input-wrapper {
+  position: relative;
+  width: 100%;
+
+  .orderForm__input[type="number"] {
+    padding-right: rem(60px); // Место для кнопок
+  }
+
+  .number-input-buttons {
+    position: absolute;
+    right: rem(4px);
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: rem(2px);
+    z-index: 2;
+  }
+
+  .number-input-btn {
+    width: rem(24px);
+    height: rem(20px);
+    border: none;
+    background: rgba($blue-color, 0.15);
+    border-radius: rem(4px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      background: rgba($blue-color, 0.25);
+      transform: scale(1.05);
+    }
+
+    &:active {
+      background: rgba($blue-color, 0.35);
+      transform: scale(0.95);
+    }
+
+    // Кастомные стрелочки
+    &::before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: rem(4px) solid transparent;
+      border-right: rem(4px) solid transparent;
+    }
+
+    &.number-input-btn-up::before {
+      border-bottom: rem(6px) solid $blue-color;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &.number-input-btn-down::before {
+      border-top: rem(6px) solid $blue-color;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    // Эффект при наведении
+    &:hover::before {
+      filter: brightness(1.2);
+    }
+  }
+}
+
+.orderForm__select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right rem(18px) center;
+  padding-right: rem(38px); // увеличиваем отступ справа
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%232563eb' height='24' viewBox='0 0 20 20' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7.293 8.293a1 1 0 011.414 0L10 9.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z'/></svg>");
+  // Для IE/Edge
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+// Кастомный выпадающий список
+.custom-select {
+  position: relative;
+  width: 100%;
+
+  &__label {
+    display: block;
+    font-size: rem(14px);
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: rem(8px);
+
+    .required {
+      color: #ef4444;
+      margin-left: 2px;
+    }
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__trigger {
+    width: 100%;
+    padding: rem(14px) rem(16px);
+    border: 2px solid rgba($blue-color, 0.1);
+    border-radius: rem(12px);
+    font-size: rem(16px);
+    transition: all 0.3s ease;
+    background: rgba(12, 64, 235, 0.123);
+    color: #c5d3f0d7;
+    line-height: 1.4;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    min-height: rem(48px);
+
+    &:hover {
+      border-color: rgba($blue-color, 0.3);
+      background: rgba(12, 64, 235, 0.15);
+    }
+
+    &.open {
+      border-color: $blue-color;
+      box-shadow: 0 0 0 3px rgba($blue-color, 0.1);
+      background: rgba(12, 64, 235, 0.18);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: $blue-color;
+      box-shadow: 0 0 0 3px rgba($blue-color, 0.1);
+    }
+  }
+
+  &__value {
+    flex: 1;
+    color: inherit;
+  }
+
+  &__arrow {
+    color: $blue-color;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: rem(8px);
+
+    &.rotated {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, rgba(30, 64, 175, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba($blue-color, 0.2);
+    border-radius: rem(12px);
+    box-shadow: 0 rem(8px) rem(32px) rgba(37, 99, 235, 0.3);
+    z-index: 1000;
+    margin-top: rem(4px);
+    max-height: rem(240px);
+    overflow-y: auto;
+    animation: dropdownSlideIn 0.3s ease-out;
+
+    // Красивая полоса прокрутки для выпадающего списка
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+    }
+  }
+
+  &__option {
+    width: 100%;
+    padding: rem(12px) rem(16px);
+    border: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: rem(16px);
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+
+    &:first-child {
+      border-radius: rem(12px) rem(12px) 0 0;
+    }
+
+    &:last-child {
+      border-radius: 0 0 rem(12px) rem(12px);
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(4px);
+    }
+
+    &.selected {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+      color: #ffffff;
+      font-weight: 600;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+        border-radius: 0 2px 2px 0;
+      }
+    }
+
+    &:active {
+      transform: translateX(4px) scale(0.98);
+    }
+  }
+
+  &__option-text {
+    flex: 1;
+  }
+
+  &__check {
+    color: #ffffff;
+    flex-shrink: 0;
+    margin-left: rem(8px);
+    animation: checkSlideIn 0.2s ease-out;
+  }
+}
+
+// Анимации для выпадающего списка
+@keyframes dropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes checkSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.orderForm__btn {
+  padding: rem(16px) rem(24px);
+  border: none;
+  border-radius: rem(14px);
+  font-size: rem(17px);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: rem(48px);
+  background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px #2563eb33;
+  line-height: 1.2;
+  white-space: nowrap;
+  
+  &:hover:not(:disabled) {
+    background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 24px #2563eb55;
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  // Улучшение для мобильных устройств
+  @media (max-width: 480px) {
+    font-size: rem(16px);
+    padding: rem(14px) rem(20px);
+    min-height: rem(44px);
+    border-radius: rem(12px);
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-1px) scale(1.02);
+    }
+  }
+}
+
+.orderForm__confirmation {
+  background: rgba($blue-color, 0.02);
+  border-radius: rem(12px);
+  padding: rem(24px);
+  margin-bottom: rem(24px);
+}
+
+.orderForm__confirmation-section {
+  margin-bottom: rem(24px);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    font-size: rem(16px);
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: rem(12px);
+  }
+
+  p {
+    font-size: rem(14px);
+    color: $text-color;
+    margin-bottom: rem(8px);
+
+    strong {
+      color: $blue-color;
+    }
+  }
+
+  ul {
+    margin: rem(8px) 0;
+    padding-left: rem(20px);
+
+    li {
+      font-size: rem(14px);
+      color: $text-color;
+      margin-bottom: rem(4px);
+    }
+  }
+}
+
+.orderForm__btn--secondary {
+  margin-right: rem(10px);
+}
+
+.orderForm__confirmation-total {
+  border-top: 1px solid rgba($blue-color, 0.2);
+  padding-top: rem(16px);
+  margin-top: rem(16px);
+}
+
+.orderForm__total-price {
+  font-size: rem(24px);
+  font-weight: 800;
+  color: $blue-color;
+  text-align: center;
+}
+
+.orderForm__success {
+  padding: rem(60px) rem(40px);
+
+  &-icon {
+    font-size: rem(64px);
+    margin-bottom: rem(24px);
+    animation: bounce 0.6s ease-in-out;
+  }
+
+  h2 {
+    font-size: rem(28px);
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: rem(16px);
+  }
+
+  p {
+    font-size: rem(16px);
+    color: $text-secondary;
+    margin-bottom: rem(32px);
+    line-height: 1.6;
+  }
+}
+
+.orderForm__success-details {
+  background: rgba($blue-color, 0.05);
+  border-radius: rem(12px);
+  padding: rem(20px);
+  margin-bottom: rem(32px);
+  text-align: left;
+
+  p {
+    font-size: rem(14px);
+    color: $text-color;
+    margin-bottom: rem(8px);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      color: $blue-color;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40%, 43% {
+    transform: translateY(-20px);
+  }
+  70% {
+    transform: translateY(-10px);
+  }
+  90% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+// Дополнительные стили для очень маленьких экранов
+@media (max-width: 360px) {
+  .orderForm {
+    margin: rem(2px);
+    border-radius: rem(12px);
+    
+    &__header {
+      padding: rem(16px) rem(6px) rem(8px);
+      
+      h2 {
+        font-size: rem(16px) !important;
+        line-height: 1.1 !important;
+      }
+      
+      p {
+        font-size: rem(12px) !important;
+        line-height: 1.2 !important;
+      }
+    }
+    
+    &__progress {
+      padding: rem(4px) rem(2px);
+      
+      &-number {
+        font-size: rem(18px) !important;
+      }
+      
+      &-text {
+        font-size: rem(10px) !important;
+        line-height: 1.1 !important;
+      }
+    }
+    
+    &__form {
+      padding: rem(8px);
+    }
+    
+    &__services {
+      grid-template-columns: 1fr;
+      gap: rem(6px);
+    }
+    
+    &__service {
+      padding: rem(10px);
+      
+      &-name {
+        font-size: rem(13px) !important;
+        line-height: 1.1 !important;
+      }
+      
+      &-price {
+        font-size: rem(10px) !important;
+      }
+    }
+    
+    &__benefits {
+      padding: rem(10px) !important;
+      
+      h4 {
+        font-size: rem(13px) !important;
+        line-height: 1.1 !important;
+        margin-bottom: rem(6px) !important;
+      }
+      
+      li {
+        font-size: rem(12px) !important;
+        line-height: 1.2 !important;
+        margin-bottom: rem(3px) !important;
+        gap: rem(4px) !important;
+        
+        span {
+          font-size: rem(14px) !important;
+        }
+      }
+    }
+    
+    &__success {
+      padding: rem(30px) rem(16px);
+      
+      &-icon {
+        font-size: rem(40px) !important;
+      }
+      
+      h2 {
+        font-size: rem(20px) !important;
+        line-height: 1.1 !important;
+      }
+      
+      p {
+        font-size: rem(13px) !important;
+        line-height: 1.3 !important;
+      }
+      
+      &-details p {
+        font-size: rem(11px) !important;
+      }
+    }
+  }
+
+  // Адаптация кастомного селекта для маленьких экранов
+  .custom-select {
+    &__trigger {
+      padding: rem(10px) rem(12px);
+      font-size: rem(14px);
+      min-height: rem(40px);
+    }
+
+    &__option {
+      padding: rem(10px) rem(12px);
+      font-size: rem(14px);
+    }
+
+    &__dropdown {
+      max-height: rem(200px);
+    }
+  }
+
+  // Адаптация кастомных кнопок для маленьких экранов
+  .number-input-wrapper {
+    .orderForm__input[type="number"] {
+      padding-right: rem(50px);
+    }
+
+    .number-input-btn {
+      width: rem(20px);
+      height: rem(16px);
+
+      &.number-input-btn-up::before {
+        border-left: rem(3px) solid transparent;
+        border-right: rem(3px) solid transparent;
+        border-bottom: rem(5px) solid $blue-color;
+      }
+
+      &.number-input-btn-down::before {
+        border-left: rem(3px) solid transparent;
+        border-right: rem(3px) solid transparent;
+        border-top: rem(5px) solid $blue-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .orderForm {
+    margin: rem(4px);
+    border-radius: rem(16px);
+    box-shadow: 0 rem(8px) rem(32px) rgba(0,0,0,0.10);
+    
+    &__header {
+      padding: rem(18px) rem(8px) rem(10px);
+      h2 {
+        font-size: rem(18px) !important;
+        line-height: 1.2 !important;
+      }
+      p {
+        font-size: rem(13px) !important;
+        line-height: 1.3 !important;
+      }
+    }
+    
+    &__progress {
+      padding: rem(5px) rem(3px);
+      
+      &-number {
+        font-size: rem(20px) !important;
+      }
+      
+      &-text {
+        font-size: rem(11px) !important;
+        line-height: 1.2 !important;
+      }
+    }
+    
+    &__form {
+      padding: rem(10px);
+    }
+    
+    &__step h3 {
+      font-size: rem(16px);
+      margin-bottom: rem(18px);
+    }
+    
+    &__field {
+      margin-bottom: rem(14px);
+      label {
+        font-size: rem(12px);
+      }
+    }
+    
+    &__services {
+      grid-template-columns: 1fr;
+      gap: rem(8px);
+    }
+    
+    &__service {
+      padding: rem(12px);
+      
+      &-name {
+        font-size: rem(14px) !important;
+        line-height: 1.2 !important;
+      }
+      
+      &-price {
+        font-size: rem(11px) !important;
+      }
+    }
+    
+    &__input,
+    &__select,
+    &__textarea {
+      padding: rem(10px) rem(10px);
+      font-size: rem(14px);
+      border-radius: rem(8px);
+    }
+    
+    &__btn {
+      padding: rem(12px) rem(10px);
+      font-size: rem(14px);
+      min-height: rem(38px);
+      border-radius: rem(8px);
+    }
+    
+    &__actions {
+      gap: rem(8px);
+      margin-top: rem(18px);
+    }
+    
+    &__benefits {
+      padding: rem(12px) !important;
+      
+      h4 {
+        font-size: rem(14px) !important;
+        line-height: 1.2 !important;
+        margin-bottom: rem(8px) !important;
+      }
+      
+      li {
+        font-size: rem(13px) !important;
+        line-height: 1.3 !important;
+        margin-bottom: rem(4px) !important;
+        gap: rem(6px) !important;
+        
+        span {
+          font-size: rem(16px) !important;
+        }
+      }
+    }
+    
+    &__confirmation {
+      padding: rem(16px);
+      
+      &-section h4 {
+        font-size: rem(14px) !important;
+      }
+      
+      p, li {
+        font-size: rem(12px) !important;
+        line-height: 1.3 !important;
+      }
+    }
+    
+    &__total-price {
+      font-size: rem(20px) !important;
+    }
+    
+    &__success {
+      padding: rem(40px) rem(20px);
+      
+      &-icon {
+        font-size: rem(48px) !important;
+      }
+      
+      h2 {
+        font-size: rem(22px) !important;
+        line-height: 1.2 !important;
+      }
+      
+      p {
+        font-size: rem(14px) !important;
+        line-height: 1.4 !important;
+      }
+      
+      &-details p {
+        font-size: rem(12px) !important;
+      }
+    }
+  }
+
+  // Адаптация кастомного селекта для средних экранов
+  .custom-select {
+    &__trigger {
+      padding: rem(12px) rem(14px);
+      font-size: rem(15px);
+      min-height: rem(44px);
+    }
+
+    &__option {
+      padding: rem(12px) rem(14px);
+      font-size: rem(15px);
+    }
+
+    &__dropdown {
+      max-height: rem(220px);
+    }
+  }
+
+  // Адаптация кастомных кнопок для средних экранов
+  .number-input-wrapper {
+    .orderForm__input[type="number"] {
+      padding-right: rem(55px);
+    }
+
+    .number-input-btn {
+      width: rem(22px);
+      height: rem(18px);
+
+      &.number-input-btn-up::before {
+        border-left: rem(3.5px) solid transparent;
+        border-right: rem(3.5px) solid transparent;
+        border-bottom: rem(5.5px) solid $blue-color;
+      }
+
+      &.number-input-btn-down::before {
+        border-left: rem(3.5px) solid transparent;
+        border-right: rem(3.5px) solid transparent;
+        border-top: rem(5.5px) solid $blue-color;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .orderForm {
+    margin: rem(10px);
+    max-height: 95vh;
+    border-radius: rem(18px);
+    
+    &__header {
+      padding: rem(30px) rem(12px) rem(12px);
+      h2 {
+        font-size: rem(22px) !important;
+        line-height: 1.2 !important;
+      }
+      p {
+        font-size: rem(15px) !important;
+        line-height: 1.3 !important;
+      }
+    }
+    
+    &__progress {
+      padding: rem(10px) rem(8px) !important;
+      
+      &-number {
+        font-size: rem(22px) !important;
+      }
+      
+      &-text {
+        font-size: rem(11px) !important;
+        line-height: 1.2 !important;
+      }
+    }
+    
+    &__form {
+      padding: rem(12px);
+    }
+    
+    &__step h3 {
+      font-size: rem(18px);
+      margin-bottom: rem(20px);
+    }
+    
+    &__field {
+      margin-bottom: rem(16px);
+      label {
+        font-size: rem(13px);
+      }
+    }
+    
+    &__services {
+      grid-template-columns: repeat(auto-fit, minmax(rem(160px), 1fr));
+      gap: rem(10px);
+    }
+    
+    &__service {
+      padding: rem(14px);
+      
+      &-name {
+        font-size: rem(15px) !important;
+        line-height: 1.2 !important;
+      }
+      
+      &-price {
+        font-size: rem(12px) !important;
+      }
+    }
+    
+    &__input,
+    &__select,
+    &__textarea {
+      padding: rem(12px) rem(12px);
+      font-size: rem(15px);
+      border-radius: rem(10px);
+    }
+    
+    &__btn {
+      padding: rem(14px) rem(12px);
+      font-size: rem(15px);
+      min-height: rem(42px);
+      border-radius: rem(10px);
+    }
+    
+    &__actions {
+      margin-top: rem(22px);
+    }
+    
+    &__benefits {
+      padding: rem(16px) !important;
+      
+      h4 {
+        font-size: rem(16px) !important;
+        line-height: 1.2 !important;
+        margin-bottom: rem(10px) !important;
+      }
+      
+      li {
+        font-size: rem(14px) !important;
+        line-height: 1.3 !important;
+        margin-bottom: rem(5px) !important;
+        gap: rem(8px) !important;
+        
+        span {
+          font-size: rem(18px) !important;
+        }
+      }
+    }
+    
+    &__confirmation {
+      padding: rem(20px);
+      
+      &-section h4 {
+        font-size: rem(15px) !important;
+      }
+      
+      p, li {
+        font-size: rem(13px) !important;
+        line-height: 1.3 !important;
+      }
+    }
+    
+    &__total-price {
+      font-size: rem(22px) !important;
+    }
+    
+    &__success {
+      padding: rem(50px) rem(30px);
+      
+      &-icon {
+        font-size: rem(56px) !important;
+      }
+      
+      h2 {
+        font-size: rem(24px) !important;
+        line-height: 1.2 !important;
+      }
+      
+      p {
+        font-size: rem(15px) !important;
+        line-height: 1.4 !important;
+      }
+      
+      &-details p {
+        font-size: rem(13px) !important;
+      }
+    }
+  }
+
+  // Адаптация кастомного селекта для больших экранов
+  .custom-select {
+    &__trigger {
+      padding: rem(14px) rem(16px);
+      font-size: rem(16px);
+      min-height: rem(48px);
+    }
+
+    &__option {
+      padding: rem(14px) rem(16px);
+      font-size: rem(16px);
+    }
+
+    &__dropdown {
+      max-height: rem(240px);
+    }
+  }
+}

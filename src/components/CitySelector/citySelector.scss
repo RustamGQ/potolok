@@ -1,0 +1,142 @@
+.city-selector {
+  position: relative;
+  display: inline-block;
+  
+  &__button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: none;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    color: #374151;
+    
+    &:hover {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.05);
+    }
+    
+    &:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+  }
+  
+  &__icon {
+    font-size: 16px;
+  }
+  
+  &__current {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+  &__arrow {
+    font-size: 12px;
+    transition: transform 0.2s ease;
+    
+    &.is-open {
+      transform: rotate(180deg);
+    }
+  }
+  
+  &__dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    min-width: 280px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  
+  &__section {
+    padding: 16px;
+    border-bottom: 1px solid #f3f4f6;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  &__section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 12px 0;
+  }
+  
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  &__option {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #374151;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: #f3f4f6;
+      color: #1f2937;
+    }
+    
+    &.is-active {
+      background: #3b82f6;
+      color: white;
+      font-weight: 500;
+    }
+    
+    &--link {
+      text-decoration: none;
+      display: block;
+      
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  
+  &__note {
+    font-size: 12px;
+    color: #6b7280;
+    margin: 0 0 8px 0;
+    font-style: italic;
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .city-selector {
+    &__dropdown {
+      min-width: 240px;
+      right: auto;
+    }
+    
+    &__button {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+  }
+}

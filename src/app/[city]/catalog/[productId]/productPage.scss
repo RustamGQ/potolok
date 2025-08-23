@@ -1,0 +1,461 @@
+.product-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  .product-container {
+    .product-header {
+      margin-bottom: 40px;
+
+      .breadcrumbs {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #666;
+
+        a {
+          color: #3b82f6;
+          text-decoration: none;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: #2563eb;
+          }
+        }
+
+        span {
+          margin: 0 8px;
+        }
+      }
+
+      .product-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0;
+        line-height: 1.2;
+      }
+    }
+
+    .product-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+
+      .product-gallery {
+        .main-image {
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+          .product-image {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
+        }
+      }
+
+      .product-info {
+        .product-price-section {
+          background: #f8f9fa;
+          border-radius: 12px;
+          padding: 24px;
+          margin-bottom: 32px;
+
+          .price-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .price-label {
+              font-size: 16px;
+              color: #666;
+              margin-right: 12px;
+            }
+
+            .price-value {
+              font-size: 28px;
+              font-weight: 700;
+              color: #3b82f6;
+            }
+          }
+
+          .product-actions {
+            display: flex;
+            gap: 16px;
+
+            .calculate-btn {
+              flex: 1;
+              background: transparent;
+              border: 2px solid #3b82f6;
+              color: #3b82f6;
+              padding: 12px 20px;
+              border-radius: 8px;
+              text-decoration: none;
+              text-align: center;
+              font-weight: 600;
+              font-size: 14px;
+              transition: all 0.2s ease;
+
+              &:hover {
+                background: #3b82f6;
+                color: white;
+              }
+            }
+
+            .order-btn {
+              flex: 1;
+              background: #3b82f6;
+              border: 2px solid #3b82f6;
+              color: white;
+              padding: 12px 20px;
+              border-radius: 8px;
+              font-weight: 600;
+              font-size: 14px;
+              cursor: pointer;
+              transition: all 0.2s ease;
+
+              &:hover {
+                background: #2563eb;
+                border-color: #2563eb;
+              }
+            }
+          }
+        }
+
+        .product-description {
+          margin-bottom: 32px;
+
+          h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 16px 0;
+          }
+
+          p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            margin: 0;
+          }
+        }
+
+        .product-features {
+          margin-bottom: 32px;
+
+          h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 16px 0;
+          }
+
+          .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+              position: relative;
+              padding-left: 24px;
+              margin-bottom: 12px;
+              font-size: 16px;
+              color: #555;
+              line-height: 1.5;
+
+              &::before {
+                content: '✓';
+                position: absolute;
+                left: 0;
+                top: 0;
+                color: #3b82f6;
+                font-weight: bold;
+                font-size: 14px;
+              }
+            }
+          }
+        }
+
+        .product-specifications {
+          h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0 0 16px 0;
+          }
+
+          .specs-grid {
+            display: grid;
+            gap: 16px;
+
+            .spec-item {
+              display: flex;
+              align-items: flex-start;
+              padding: 16px;
+              background: #f8f9fa;
+              border-radius: 8px;
+
+              .spec-label {
+                font-weight: 600;
+                color: #333;
+                min-width: 120px;
+                margin-right: 16px;
+              }
+
+              .spec-value {
+                color: #666;
+                flex: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .product-footer {
+      .cta-section {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+        border-radius: 16px;
+        padding: 40px;
+        text-align: center;
+        color: white;
+
+        h3 {
+          font-size: 28px;
+          font-weight: 700;
+          margin: 0 0 12px 0;
+        }
+
+        p {
+          font-size: 18px;
+          margin: 0 0 32px 0;
+          opacity: 0.9;
+        }
+
+        .cta-buttons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+
+          .cta-calculate-btn {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: white;
+              color: #ff6b6b;
+            }
+          }
+
+          .cta-order-btn {
+            background: white;
+            border: 2px solid white;
+            color: #ff6b6b;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+              background: transparent;
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Планшеты
+@media (max-width: 1024px) {
+  .product-page {
+    padding: 30px 16px;
+
+    .product-container {
+      .product-header {
+        margin-bottom: 30px;
+
+        .product-title {
+          font-size: 28px;
+        }
+      }
+
+      .product-content {
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+// Мобильные устройства
+@media (max-width: 768px) {
+  .product-page {
+    padding: 20px 12px;
+
+    .product-container {
+      .product-header {
+        margin-bottom: 24px;
+
+        .breadcrumbs {
+          font-size: 12px;
+          margin-bottom: 16px;
+        }
+
+        .product-title {
+          font-size: 24px;
+        }
+      }
+
+      .product-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-bottom: 32px;
+
+        .product-info {
+          .product-price-section {
+            padding: 20px;
+
+            .price-info {
+              margin-bottom: 16px;
+
+              .price-label {
+                font-size: 14px;
+              }
+
+              .price-value {
+                font-size: 24px;
+              }
+            }
+
+            .product-actions {
+              flex-direction: column;
+              gap: 12px;
+
+              .calculate-btn,
+              .order-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+              }
+            }
+          }
+
+          .product-description,
+          .product-features,
+          .product-specifications {
+            margin-bottom: 24px;
+
+            h3 {
+              font-size: 18px;
+              margin-bottom: 12px;
+            }
+
+            p {
+              font-size: 14px;
+            }
+
+            .features-list li {
+              font-size: 14px;
+              margin-bottom: 8px;
+            }
+
+            .specs-grid {
+              gap: 12px;
+
+              .spec-item {
+                padding: 12px;
+                flex-direction: column;
+                align-items: flex-start;
+
+                .spec-label {
+                  min-width: auto;
+                  margin-right: 0;
+                  margin-bottom: 4px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .product-footer {
+        .cta-section {
+          padding: 24px;
+
+          h3 {
+            font-size: 22px;
+          }
+
+          p {
+            font-size: 16px;
+            margin-bottom: 24px;
+          }
+
+          .cta-buttons {
+            flex-direction: column;
+            gap: 12px;
+
+            .cta-calculate-btn,
+            .cta-order-btn {
+              padding: 12px 20px;
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Маленькие мобильные устройства
+@media (max-width: 480px) {
+  .product-page {
+    padding: 16px 8px;
+
+    .product-container {
+      .product-header {
+        .product-title {
+          font-size: 22px;
+        }
+      }
+
+      .product-content {
+        .product-info {
+          .product-price-section {
+            padding: 16px;
+
+            .price-value {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .product-footer {
+        .cta-section {
+          padding: 20px;
+
+          h3 {
+            font-size: 20px;
+          }
+
+          p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1456 @@
+@use "../../styles/_variables.scss" as *;
+
+.hero {
+    min-height: 100vh;
+    position: relative;
+    background: linear-gradient(135deg, 
+        #e0e7ff 0%, 
+        #c7d2fe 50%, 
+        #a5b4fc 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease-in-out infinite;
+    padding: rem(120px) 0 rem(80px);
+    overflow: hidden;
+    
+    // Динамический фон с крутыми элементами
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    // Большие плавающие круги
+    &__floating-orbs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__orb {
+        position: absolute;
+        border-radius: 50%;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.2), 
+            rgba(99, 102, 241, 0.15));
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: orbFloat 20s ease-in-out infinite;
+        will-change: transform;
+        
+        &--1 {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            right: -50px;
+            animation-delay: 0s;
+        }
+        
+        &--2 {
+            width: 200px;
+            height: 200px;
+            bottom: -50px;
+            left: -30px;
+            animation-delay: 4s;
+        }
+        
+        &--3 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 15%;
+            animation-delay: 8s;
+        }
+    }
+
+    // Геометрические фигуры
+    &__shapes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__shape {
+        position: absolute;
+        background: linear-gradient(45deg, 
+            rgba(255, 255, 255, 0.15), 
+            rgba(129, 140, 248, 0.2));
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: shapeRotate 25s linear infinite;
+        will-change: transform;
+        
+        &--triangle {
+            width: 80px;
+            height: 80px;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            top: 15%;
+            right: 20%;
+            animation-delay: 2s;
+        }
+        
+        &--diamond {
+            width: 60px;
+            height: 60px;
+            transform: rotate(45deg);
+            top: 70%;
+            right: 15%;
+            animation-delay: 6s;
+        }
+        
+        &--hexagon {
+            width: 100px;
+            height: 100px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            bottom: 20%;
+            left: 80%;
+            animation-delay: 10s;
+        }
+    }
+
+
+
+    // Мерцающие звезды
+    &__stars {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__star {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: twinkle 3s ease-in-out infinite;
+        
+        &--1 {
+            top: 25%;
+            left: 30%;
+            animation-delay: 0s;
+        }
+        
+        &--2 {
+            top: 45%;
+            right: 25%;
+            animation-delay: 1s;
+        }
+        
+        &--3 {
+            bottom: 30%;
+            left: 70%;
+            animation-delay: 2s;
+        }
+        
+
+    }
+
+
+
+    .container {
+        position: relative;
+        z-index: 2;
+        // Container base styles are in globals.scss
+    }
+
+    &__layout {
+        display: flex;
+        flex-direction: column;
+        gap: rem(40px);
+    }
+
+    // Верхние метрики
+    &__metrics {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: rem(24px);
+        margin-bottom: rem(40px);
+    }
+
+    &__metric-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 20px;
+        padding: rem(24px);
+        display: flex;
+        align-items: center;
+        gap: rem(16px);
+        @include smooth-transition;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba($blue-color, 0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+    }
+
+    &__metric-icon {
+        font-size: rem(32px);
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba($blue-color, 0.2), rgba($blue-color, 0.1));
+        border-radius: 16px;
+        border: 1px solid rgba($blue-color, 0.3);
+    }
+
+    &__metric-content {
+        flex: 1;
+    }
+
+    &__metric-number {
+        font-size: rem(28px);
+        font-weight: 900;
+        color: #0f172a;
+        line-height: 1;
+        margin-bottom: rem(4px);
+    }
+
+    &__metric-label {
+        font-size: rem(14px);
+        color: #64748b;
+        font-weight: 500;
+    }
+
+    &__metric-trend {
+        font-size: rem(12px);
+        color: #22c55e;
+        font-weight: 600;
+        background: rgba(34, 197, 94, 0.1);
+        padding: rem(4px) rem(8px);
+        border-radius: 8px;
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    // Основной контент
+    &__main-content {
+        display: grid;
+        grid-template-columns: 1fr 500px;
+        gap: rem(60px);
+        align-items: start;
+    }
+
+    &__left {
+        color: #0f172a;
+    }
+
+    &__badge-group {
+        display: flex;
+        gap: rem(12px);
+        margin-bottom: rem(32px);
+        flex-wrap: wrap;
+    }
+
+    &__badge {
+        display: inline-flex;
+        align-items: center;
+        gap: rem(6px);
+        padding: rem(8px) rem(16px);
+        border-radius: 25px;
+        font-size: rem(14px);
+        font-weight: 600;
+        @include smooth-transition;
+        
+        &--featured {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+        }
+        
+        &--new {
+            background: rgba(255, 255, 255, 0.8);
+            color: #0f172a;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        &:hover {
+            transform: translateY(-2px);
+        }
+    }
+
+    &__title {
+        margin-bottom: rem(40px);
+        
+        &-line {
+            display: block;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: 1px;
+            margin-bottom: rem(8px);
+            
+            &--highlight {
+                color: $blue-color;
+                font-size: rem(50px);
+            }
+            &--main {
+                color: #0f51e0;
+                font-size: rem(50px);
+                font-family: 'Courier New', Courier, monospace;
+            }
+        }
+        
+        &-sub {
+            display: block;
+            font-size: rem(24px);
+            font-weight: 500;
+            color: #64748b;
+            margin-top: rem(16px);
+        }
+    }
+
+    &__value-props {
+        display: flex;
+        flex-direction: column;
+        gap: rem(24px);
+        margin-bottom: rem(50px);
+    }
+
+    &__value-prop {
+        display: flex;
+        gap: rem(20px);
+        align-items: flex-start;
+        padding: rem(20px);
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        @include smooth-transition;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateX(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__prop-number {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, $blue-color, #1e40af);
+        color: white;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: rem(18px);
+        font-weight: 800;
+        flex-shrink: 0;
+    }
+
+    &__prop-content {
+        h3 {
+            font-size: rem(20px);
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: rem(8px);
+        }
+        
+        p {
+            font-size: rem(16px);
+            color: #64748b;
+            line-height: 1.5;
+        }
+    }
+
+    &__action-zone {
+        display: flex;
+        flex-direction: column;
+        gap: rem(32px);
+    }
+
+    &__cta-buttons {
+        display: flex;
+        gap: rem(16px);
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        gap: rem(12px);
+        padding: rem(18px) rem(28px);
+        border-radius: 16px;
+        font-size: rem(16px);
+        font-weight: 700;
+        cursor: pointer;
+        border: none;
+        @include smooth-transition;
+        position: relative;
+        overflow: hidden;
+        
+        &--primary {
+            background: linear-gradient(135deg, $blue-color, #1e40af);
+            color: white;
+            box-shadow: 0 8px 30px rgba($blue-color, 0.4);
+            
+            &:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 40px rgba($blue-color, 0.5);
+            }
+            
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+                animation: shine 3s ease-in-out infinite;
+            }
+        }
+        
+        &--secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: #0f172a;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            
+            &:hover {
+                background: rgba(255, 255, 255, 1);
+                border-color: rgba(0, 0, 0, 0.2);
+                transform: translateY(-2px);
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+    &__contact-card {
+        display: flex;
+        align-items: center;
+        gap: rem(16px);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        padding: rem(20px);
+        @include smooth-transition;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        
+        &:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__contact-avatar {
+        position: relative;
+    }
+
+    &__avatar-img {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: rem(24px);
+    }
+
+    &__online-status {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        width: 12px;
+        height: 12px;
+        background: #22c55e;
+        border-radius: 50%;
+        border: 2px solid white;
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    &__contact-info {
+        flex: 1;
+    }
+
+    &__contact-name {
+        font-size: rem(16px);
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: rem(2px);
+    }
+
+    &__contact-role {
+        font-size: rem(14px);
+        color: #64748b;
+        margin-bottom: rem(4px);
+    }
+
+    &__contact-phone {
+        font-size: rem(16px);
+        font-weight: 600;
+        color: $blue-color;
+        text-decoration: none;
+        @include smooth-transition;
+        
+        &:hover {
+            color: #60a5fa;
+        }
+    }
+
+    &__contact-btn {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, $blue-color, #1e40af);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: rem(18px);
+        cursor: pointer;
+        @include smooth-transition;
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba($blue-color, 0.4);
+        }
+    }
+
+    // Симулятор
+    &__right {
+        position: sticky;
+        top: rem(120px);
+    }
+
+    &__simulator {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 24px;
+        padding: rem(32px);
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+    }
+
+    &__sim-header {
+        margin-bottom: rem(24px);
+    }
+
+    &__sim-title {
+        font-size: rem(24px);
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: rem(16px);
+    }
+
+    &__sim-controls {
+        display: flex;
+        gap: rem(8px);
+    }
+
+    &__sim-btn {
+        flex: 1;
+        padding: rem(10px) rem(16px);
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: rem(14px);
+        font-weight: 600;
+        color: #64748b;
+        cursor: pointer;
+        @include smooth-transition;
+        
+        &:hover {
+            background: #e2e8f0;
+        }
+        
+        &--active {
+            background: linear-gradient(135deg, $blue-color, #1e40af);
+            color: white;
+            border-color: $blue-color;
+        }
+    }
+
+    &__sim-viewport {
+        position: relative;
+        height: 340px;
+        background: linear-gradient(180deg, #eaf1ff 0%, #f5f7fb 100%);
+        border-radius: 16px;
+        margin-bottom: rem(24px);
+        overflow: hidden;
+        border: 1px solid #e5edf7;
+        box-shadow: inset 0 -40px 80px rgba(99, 102, 241, 0.06);
+    }
+
+    &__room-preview {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        perspective: 1000px;
+        --yaw: -20deg;
+        --pitch: 20deg;
+        transform-style: preserve-3d;
+        --color-base: #ffffff;
+        --light-intensity: .6;
+    }
+
+    // Фотография комнаты на фоне сцены
+    &__room-preview--photo {
+        .hero__room-photo {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: saturate(1.05);
+            transform: translateZ(-1px) scale(1.01);
+        }
+        .hero__room-photo-dim {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(120% 100% at 50% 100%, rgba(0,0,0,0.06), rgba(255,255,255,0) 60%);
+            pointer-events: none;
+        }
+        // Скрываем геометрию стен в режиме фото
+        .hero__room-backwall,
+        .hero__room-leftwall,
+        .hero__room-rightwall,
+        .hero__room-floor,
+        .hero__room-window {
+            display: none;
+        }
+    }
+
+    &__room-ceiling {
+        position: absolute;
+        top: 36px;
+        left: 44px;
+        right: 44px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--color-base) 0%, #f8fafc 100%);
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba($blue-color, 0.12);
+        transform: rotateX(var(--pitch)) rotateY(var(--yaw));
+        transform-origin: 50% 0%;
+        transition: background 200ms ease;
+        animation: subtle-glow 4s ease-in-out infinite alternate;
+        will-change: transform, background;
+    }
+    // Каркас комнаты
+    &__room-backwall,
+    &__room-leftwall,
+    &__room-rightwall,
+    &__room-floor {
+        position: absolute;
+        transform: rotateX(var(--pitch)) rotateY(var(--yaw));
+        transform-origin: 50% 0%;
+        will-change: transform;
+    }
+
+    &__room-backwall {
+        left: 44px;
+        right: 44px;
+        top: 96px;
+        bottom: 74px;
+        background: linear-gradient(180deg, #f8fafc 0%, #e5ecf7 100%);
+        border-radius: 0 0 12px 12px;
+        box-shadow: inset 0 10px 24px rgba(0,0,0,0.04);
+    }
+
+    &__room-leftwall {
+        top: 96px;
+        bottom: 74px;
+        left: 44px;
+        width: 34%;
+        background: linear-gradient(180deg, #eef2f7 0%, #e7edf5 100%);
+        clip-path: polygon(0 0, 100% 0, 86% 100%, 0% 100%);
+        box-shadow: inset -18px 0 26px rgba(0,0,0,0.04);
+    }
+
+    &__room-rightwall {
+        top: 96px;
+        bottom: 74px;
+        right: 44px;
+        width: 34%;
+        background: linear-gradient(180deg, #eef2f7 0%, #e7edf5 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 14% 100%);
+        box-shadow: inset 18px 0 26px rgba(0,0,0,0.04);
+    }
+
+    &__room-floor {
+        left: 44px;
+        right: 44px;
+        bottom: 24px;
+        height: 64px;
+        background: linear-gradient(0deg, #e6edf6 0%, #f6f9ff 100%);
+        border-radius: 0 0 12px 12px;
+        box-shadow: inset 0 -12px 24px rgba(0,0,0,0.05);
+    }
+
+    &__room-window {
+        position: absolute;
+        top: 120px;
+        left: 50%;
+        transform: translateX(-50%) rotateX(var(--pitch)) rotateY(var(--yaw));
+        transform-origin: 50% 0%;
+        width: 110px;
+        height: 130px;
+        border-radius: 6px;
+        background: linear-gradient(180deg, #e6f0ff 0%, #cfe3ff 100%);
+        box-shadow: inset 0 10px 20px rgba(255,255,255,0.65), 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    &__lighting-effects {
+        position: absolute;
+        top: 50px;
+        left: 80px;
+        right: 80px;
+        height: 56px;
+        background: radial-gradient(60% 80% at 50% 50%, rgba($blue-color, var(--light-intensity)), rgba($blue-color, 0.08) 60%, transparent 80%);
+        border-radius: 12px;
+        animation: lighting-pulse 3s ease-in-out infinite;
+        filter: blur(8px);
+        transform: rotateX(var(--pitch)) rotateY(var(--yaw));
+        transform-origin: 50% 50%;
+        will-change: transform, opacity;
+        pointer-events: none;
+    }
+
+    &__sim-overlay {
+        position: absolute;
+        top: rem(16px);
+        right: rem(16px);
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+    }
+
+    &__overlay-info {
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: rem(6px) rem(12px);
+        border-radius: 8px;
+        font-size: rem(12px);
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+        
+        display: flex;
+        gap: rem(8px);
+    }
+
+    &__overlay-label {
+        opacity: 0.8;
+    }
+
+    &__overlay-value {
+        color: $blue-color;
+    }
+
+    &__sim-options {
+        display: flex;
+        flex-direction: column;
+        gap: rem(20px);
+        margin-bottom: rem(24px);
+    }
+
+    &__option-group {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+    }
+
+    &__option-label {
+        font-size: rem(14px);
+        font-weight: 600;
+        color: #374151;
+    }
+
+    &__option-pills {
+        display: flex;
+        gap: rem(8px);
+    }
+
+    &__pill {
+        padding: rem(8px) rem(16px);
+        background: #f1f5f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        font-size: rem(14px);
+        font-weight: 500;
+        color: #64748b;
+        cursor: pointer;
+        @include smooth-transition;
+        
+        &:hover {
+            background: #e2e8f0;
+        }
+        
+        &--active {
+            background: $blue-color;
+            color: white;
+            border-color: $blue-color;
+        }
+    }
+
+    &__color-picker {
+        display: flex;
+        flex-direction: column;
+        gap: rem(8px);
+    }
+
+    &__colors {
+        display: flex;
+        gap: rem(8px);
+    }
+
+    &__color {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        cursor: pointer;
+        @include smooth-transition;
+        
+        &:hover {
+            transform: scale(1.1);
+        }
+        
+        &--active {
+            border-color: $blue-color;
+            box-shadow: 0 0 0 2px rgba($blue-color, 0.3);
+        }
+        
+        &--white { background: #ffffff; }
+        &--cream { background: #fef7ed; }
+        &--gray { background: #f1f5f9; }
+        &--blue { background: #dbeafe; }
+        &--green { background: #dcfce7; }
+    }
+
+    &__sim-cta {
+        width: 100%;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        color: white;
+        border: none;
+        padding: rem(18px);
+        border-radius: 16px;
+        font-size: rem(16px);
+        font-weight: 700;
+        cursor: pointer;
+        @include smooth-transition;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(34, 197, 94, 0.3);
+        }
+    }
+
+    &__sim-price {
+        background: rgba(255, 255, 255, 0.2);
+        padding: rem(4px) rem(12px);
+        border-radius: 8px;
+        font-size: rem(18px);
+        font-weight: 900;
+    }
+
+    // Преимущества
+    &__advantages {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: rem(24px);
+        margin-top: rem(40px);
+    }
+
+    &__advantage {
+        display: flex;
+        align-items: center;
+        gap: rem(16px);
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 16px;
+        padding: rem(20px);
+        @include smooth-transition;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        
+        &:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    &__advantage-icon {
+        font-size: rem(28px);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba($blue-color, 0.2), rgba($blue-color, 0.1));
+        border-radius: 12px;
+        flex-shrink: 0;
+    }
+
+    &__advantage-text {
+        display: flex;
+        flex-direction: column;
+        gap: rem(4px);
+        
+        strong {
+            font-size: rem(16px);
+            font-weight: 700;
+            color: #0f172a;
+        }
+        
+        span {
+            font-size: rem(14px);
+            color: #64748b;
+        }
+    }
+}
+
+// Анимации
+@keyframes gradientShift {
+    0% { 
+        background-position: 0% 50%; 
+    }
+    50% { 
+        background-position: 100% 50%; 
+    }
+    100% { 
+        background-position: 0% 50%; 
+    }
+}
+
+@keyframes orbFloat {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 0.7;
+    }
+    25% { 
+        transform: translate(20px, -30px) scale(1.1);
+        opacity: 0.5;
+    }
+    50% { 
+        transform: translate(-10px, -20px) scale(0.9);
+        opacity: 0.8;
+    }
+    75% { 
+        transform: translate(-30px, 10px) scale(1.05);
+        opacity: 0.6;
+    }
+}
+
+@keyframes shapeRotate {
+    0% { 
+        transform: rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    25% { 
+        transform: rotate(90deg) scale(1.2);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: rotate(180deg) scale(0.8);
+        opacity: 0.9;
+    }
+    75% { 
+        transform: rotate(270deg) scale(1.1);
+        opacity: 0.5;
+    }
+    100% { 
+        transform: rotate(360deg) scale(1);
+        opacity: 0.8;
+    }
+}
+
+
+
+@keyframes twinkle {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+
+@keyframes glow {
+    0%, 100% { 
+        text-shadow: 0 0 20px rgba($blue-color, 0.5); 
+    }
+    50% { 
+        text-shadow: 0 0 40px rgba($blue-color, 0.8), 0 0 60px rgba($blue-color, 0.4); 
+    }
+}
+
+@keyframes shine {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+}
+
+@keyframes subtle-glow {
+    0%, 100% { 
+        box-shadow: 0 8px 25px rgba($blue-color, 0.1); 
+    }
+    50% { 
+        box-shadow: 0 8px 35px rgba($blue-color, 0.2); 
+    }
+}
+
+@keyframes lighting-pulse {
+    0%, 100% { 
+        opacity: 0.3; 
+    }
+    50% { 
+        opacity: 0.7; 
+    }
+}
+
+// Responsive
+@media (max-width: 1400px) {
+    .hero {
+        &__main-content {
+            grid-template-columns: 1fr 480px;
+            gap: rem(50px);
+        }
+        
+        &__title-line {
+            font-size: rem(64px);
+        }
+        
+        &__metrics {
+            grid-template-columns: repeat(3, 1fr);
+            gap: rem(20px);
+        }
+        
+        &__advantages {
+            grid-template-columns: repeat(4, 1fr);
+            gap: rem(20px);
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .hero {
+        padding: rem(100px) 0 rem(70px);
+        
+        &__main-content {
+            grid-template-columns: 1fr 450px;
+            gap: rem(40px);
+        }
+        
+        &__title-line {
+            font-size: rem(56px);
+            letter-spacing: -2px;
+        }
+        
+        &__title-sub {
+            font-size: rem(22px);
+        }
+        
+        &__metrics {
+            grid-template-columns: repeat(3, 1fr);
+            gap: rem(16px);
+        }
+        
+        &__metric-card {
+            padding: rem(20px);
+        }
+        
+        &__metric-number {
+            font-size: rem(24px);
+        }
+        
+        &__advantages {
+            grid-template-columns: repeat(4, 1fr);
+            gap: rem(16px);
+        }
+        
+        &__advantage {
+            padding: rem(16px);
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero {
+        padding: rem(80px) 0 rem(60px);
+        
+        &__main-content {
+            grid-template-columns: 1fr 400px;
+            gap: rem(35px);
+        }
+        
+        &__title-line {
+            font-size: rem(48px);
+            letter-spacing: -1.5px;
+        }
+        
+        &__title-sub {
+            font-size: rem(20px);
+        }
+        
+        &__metrics {
+            grid-template-columns: repeat(3, 1fr);
+            gap: rem(14px);
+        }
+        
+        &__metric-card {
+            padding: rem(18px);
+        }
+        
+        &__metric-number {
+            font-size: rem(22px);
+        }
+        
+        &__metric-label {
+            font-size: rem(13px);
+        }
+        
+        &__advantages {
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(16px);
+        }
+        
+        &__advantage {
+            padding: rem(16px);
+        }
+        
+        &__advantage-icon {
+            font-size: rem(24px);
+            width: 45px;
+            height: 45px;
+        }
+    }
+}
+
+@media (max-width: 968px) {
+    .hero {
+        padding: rem(70px) 0 rem(50px);
+        
+        &__main-content {
+            grid-template-columns: 1fr;
+            gap: rem(40px);
+        }
+        
+        &__title-line {
+            font-size: rem(44px);
+            letter-spacing: -1px;
+        }
+        
+        &__title-sub {
+            font-size: rem(18px);
+        }
+        
+        &__metrics {
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(16px);
+        }
+        
+        &__metric-card {
+            padding: rem(20px);
+        }
+        
+        &__metric-number {
+            font-size: rem(24px);
+        }
+        
+        &__advantages {
+            grid-template-columns: repeat(2, 1fr);
+            gap: rem(16px);
+        }
+        
+        &__cta-buttons {
+            flex-direction: column;
+            gap: rem(12px);
+        }
+        
+        &__btn {
+            padding: rem(16px) rem(24px);
+            font-size: rem(15px);
+        }
+        
+        &__right {
+            position: static;
+        }
+        
+        &__simulator {
+            padding: rem(24px);
+        }
+        
+        &__sim-title {
+            font-size: rem(20px);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: rem(60px) 0 rem(40px);
+        
+        &__title-line {
+            font-size: rem(36px);
+            letter-spacing: -0.5px;
+        }
+        
+        &__title-sub {
+            font-size: rem(16px);
+        }
+        
+        &__metrics {
+            grid-template-columns: 1fr;
+            gap: rem(12px);
+        }
+        
+        &__metric-card {
+            padding: rem(16px);
+        }
+        
+        &__metric-number {
+            font-size: rem(20px);
+        }
+        
+        &__metric-label {
+            font-size: rem(12px);
+        }
+        
+        &__advantages {
+            grid-template-columns: 1fr;
+            gap: rem(12px);
+        }
+        
+        &__advantage {
+            padding: rem(14px);
+        }
+        
+        &__advantage-icon {
+            font-size: rem(20px);
+            width: 40px;
+            height: 40px;
+        }
+        
+        &__value-prop {
+            padding: rem(16px);
+            gap: rem(16px);
+        }
+        
+        &__prop-content h3 {
+            font-size: rem(18px);
+        }
+        
+        &__prop-content p {
+            font-size: rem(14px);
+        }
+        
+        &__simulator {
+            padding: rem(20px);
+        }
+        
+        &__sim-title {
+            font-size: rem(18px);
+        }
+        
+        &__sim-controls {
+            flex-direction: column;
+            gap: rem(6px);
+        }
+        
+        &__sim-btn {
+            padding: rem(8px) rem(12px);
+            font-size: rem(13px);
+        }
+        
+        &__option-pills {
+            flex-wrap: wrap;
+            gap: rem(6px);
+        }
+        
+        &__pill {
+            padding: rem(6px) rem(12px);
+            font-size: rem(13px);
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: rem(50px) 0 rem(30px);
+        
+        &__title-line {
+            font-size: rem(32px);
+            letter-spacing: 0;
+        }
+        
+        &__title-sub {
+            font-size: rem(15px);
+        }
+        
+        &__badge-group {
+            gap: rem(8px);
+        }
+        
+        &__badge {
+            padding: rem(6px) rem(12px);
+            font-size: rem(12px);
+        }
+        
+        &__value-prop {
+            padding: rem(12px);
+            gap: rem(12px);
+        }
+        
+        &__prop-number {
+            width: 35px;
+            height: 35px;
+            font-size: rem(16px);
+        }
+        
+        &__prop-content h3 {
+            font-size: rem(16px);
+        }
+        
+        &__prop-content p {
+            font-size: rem(13px);
+        }
+        
+        &__btn {
+            padding: rem(14px) rem(20px);
+            font-size: rem(14px);
+        }
+        
+        &__contact-card {
+            padding: rem(16px);
+            gap: rem(12px);
+        }
+        
+        &__avatar-img {
+            width: 45px;
+            height: 45px;
+            font-size: rem(20px);
+        }
+        
+        &__contact-name {
+            font-size: rem(14px);
+        }
+        
+        &__contact-role {
+            font-size: rem(12px);
+        }
+        
+        &__contact-phone {
+            font-size: rem(14px);
+        }
+        
+        &__simulator {
+            padding: rem(16px);
+        }
+        
+        &__sim-title {
+            font-size: rem(16px);
+        }
+        
+        &__sim-viewport {
+            height: 280px;
+        }
+        
+        &__option-label {
+            font-size: rem(13px);
+        }
+        
+        &__pill {
+            padding: rem(5px) rem(10px);
+            font-size: rem(12px);
+        }
+        
+        &__color {
+            width: 28px;
+            height: 28px;
+        }
+        
+        &__sim-cta {
+            padding: rem(14px);
+            font-size: rem(14px);
+        }
+        
+        &__sim-price {
+            font-size: rem(16px);
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: rem(40px) 0 rem(25px);
+        
+        &__title-line {
+            font-size: rem(28px);
+        }
+        
+        &__title-sub {
+            font-size: rem(14px);
+        }
+        
+        &__metric-card {
+            padding: rem(14px);
+        }
+        
+        &__metric-number {
+            font-size: rem(18px);
+        }
+        
+        &__metric-label {
+            font-size: rem(11px);
+        }
+        
+        &__advantage {
+            padding: rem(12px);
+        }
+        
+        &__advantage-icon {
+            font-size: rem(18px);
+            width: 35px;
+            height: 35px;
+        }
+        
+        &__advantage-text strong {
+            font-size: rem(14px);
+        }
+        
+        &__advantage-text span {
+            font-size: rem(12px);
+        }
+        
+        &__btn {
+            padding: rem(12px) rem(16px);
+            font-size: rem(13px);
+        }
+        
+        &__simulator {
+            padding: rem(12px);
+        }
+        
+        &__sim-viewport {
+            height: 240px;
+        }
+        
+        &__sim-cta {
+            padding: rem(12px);
+            font-size: rem(13px);
+        }
+        
+        &__sim-price {
+            font-size: rem(14px);
+        }
+    }
+}

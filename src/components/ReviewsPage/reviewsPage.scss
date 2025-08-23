@@ -1,0 +1,171 @@
+@use '../../styles/_variables.scss' as *;
+@use 'sass:color';
+
+.reviews-page {
+  color: $text-color;
+}
+
+.reviews-hero {
+  background: linear-gradient(135deg, rgba($blue-color, 0.1), rgba(#60a5fa, 0.15));
+  padding: 72px 0 48px;
+
+  .hero-content {
+    max-width: 820px;
+    h1 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 10px 0 12px;
+      color: #0f172a;
+    }
+    p {
+      color: $text-secondary;
+      font-size: 18px;
+    }
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: $blue-color;
+    background: rgba($blue-color, 0.08);
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba($blue-color, 0.15);
+  }
+}
+
+.telegram-cta {
+  padding: 24px 0 8px;
+
+  .tg-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 20px;
+    border-radius: 16px;
+    background: linear-gradient(90deg, rgba(#e0f2fe, 0.7), rgba(#dbeafe, 0.7));
+    border: 1px solid rgba($blue-color, 0.15);
+    text-decoration: none;
+    @include smooth-transition(box-shadow);
+
+    &:hover {
+      box-shadow: 0 10px 35px rgba($blue-color, 0.15);
+    }
+
+    &__icon {
+      flex: 0 0 auto;
+    }
+    &__content {
+      h2 {
+        font-size: 24px;
+        margin-bottom: 6px;
+        color: #0f172a;
+      }
+      p { color: $text-secondary; }
+    }
+    &__btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: $blue-color;
+      color: $white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      @include smooth-transition(background-color);
+      &:hover { background: color.adjust($blue-color, $lightness: -6%); }
+    }
+  }
+}
+
+.reviews-list {
+  padding: 28px 0 56px;
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+
+    @media (max-width: 1100px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 640px) { grid-template-columns: 1fr; }
+  }
+
+  .review-card {
+    background: $white;
+    border: 1px solid rgba($blue-color, 0.12);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 6px 24px rgba($blue-color, 0.08);
+    @include smooth-transition(transform);
+    &:hover { transform: translateY(-2px); }
+
+    &__header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $blue-color, #60a5fa);
+      color: $white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 6px 18px rgba($blue-color, 0.25);
+    }
+    .meta {
+      flex: 1 1 auto;
+      h3 { font-size: 16px; color: #0f172a; }
+      .city { color: $blue-color; font-weight: 600; }
+      .date { color: $text-secondary; font-size: 12px; }
+    }
+    .rating {
+      font-size: 14px;
+      color: #f59e0b;
+      .muted { color: #e2e8f0; }
+    }
+    &__text { color: #0f172a; }
+  }
+}
+
+.reviews-cta {
+  padding: 16px 0 64px;
+  .cta {
+    text-align: center;
+    background: linear-gradient(180deg, rgba($blue-color, 0.06), rgba(#93c5fd, 0.06));
+    border: 1px solid rgba($blue-color, 0.15);
+    border-radius: 18px;
+    padding: 28px 20px;
+  }
+  h2 { font-size: 28px; color: #0f172a; }
+  p { color: $text-secondary; margin: 6px 0 14px; }
+  .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  .btn-primary,
+  .btn-outline {
+    display: inline-block;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background: $blue-color;
+    color: $white;
+    @include smooth-transition(background-color);
+    &:hover { background: color.adjust($blue-color, $lightness: -6%); }
+  }
+  .btn-outline {
+    color: $blue-color;
+    border: 1px solid rgba($blue-color, 0.3);
+    background: $white;
+    @include smooth-transition(border-color);
+    &:hover { border-color: $blue-color; }
+  }
+}
+
+

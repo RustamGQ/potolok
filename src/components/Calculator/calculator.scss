@@ -1,0 +1,418 @@
+@use "../../styles/_variables.scss" as *;
+
+.calc {
+  padding: 40px 0 80px;
+  background:
+    radial-gradient(1200px 400px at 100% -200px, rgba($blue-color, 0.12), transparent),
+    radial-gradient(800px 300px at -150px -100px, rgba($blue-color, 0.08), transparent);
+
+  &__wrap {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 28px;
+  }
+
+  &__header { 
+    margin-bottom: 14px; 
+  }
+  
+  &__title { 
+    font-size: 34px; 
+    font-weight: 900; 
+    color: #0f172a; 
+    letter-spacing: -0.02em; 
+  }
+  
+  &__sub { 
+    color: #475569; 
+    font-weight: 600; 
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    background: #fff;
+    border: 1px solid rgba($blue-color, 0.18);
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 24px 60px rgba($blue-color, 0.16);
+  }
+
+  &__field { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+  }
+  
+  &__field--full { 
+    grid-column: 1 / -1; 
+  }
+  
+  &__label { 
+    font-size: 13px; 
+    font-weight: 700; 
+    color: #334155; 
+  }
+
+  &__input {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 2px solid rgba($blue-color, 0.3);
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    color: #0f172a;
+    font-weight: 800;
+    outline: none;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+    &:focus { 
+      border-color: $blue-color; 
+      box-shadow: 0 0 0 4px rgba($blue-color, 0.16); 
+    }
+  }
+
+  &__pills { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+  }
+  
+  &__pill {
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    background: #eef2ff;
+    color: #334155;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+    &:hover { 
+      transform: translateY(-1px); 
+    }
+    &.is-active { 
+      background: linear-gradient(135deg, $blue-color, #1e40af); 
+      color: #fff; 
+      border-color: $blue-color; 
+      box-shadow: 0 10px 24px rgba($blue-color, .32); 
+    }
+  }
+
+  &__check { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    font-weight: 700; 
+    color: #334155; 
+  }
+
+  &__right { 
+    align-self: start; 
+  }
+  
+  &__card {
+    position: sticky; 
+    top: 24px;
+    background: #0b1220;
+    color: #e2e8f0;
+    border-radius: 22px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  }
+  
+  &__priceRow { 
+    display: flex; 
+    justify-content: space-between; 
+    padding: 8px 0; 
+    border-bottom: 1px dashed rgba(255,255,255,0.08); 
+    
+    strong {
+      white-space: nowrap; /* Предотвращаем перенос цены */
+      text-align: right; /* Выравниваем по правому краю */
+    }
+  }
+  
+  &__divider { 
+    height: 1px; 
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent); 
+    margin: 10px 0; 
+  }
+  
+  &__totalRow { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    font-size: 18px; 
+    font-weight: 900; 
+    padding-top: 6px; 
+    
+    strong {
+      white-space: nowrap; /* Предотвращаем перенос цены */
+      text-align: right; /* Выравниваем по правому краю */
+    }
+  }
+
+  &__ctaWrap { 
+    display: grid; 
+    grid-template-columns: 1fr; 
+    gap: 10px; 
+    margin-top: 14px; 
+  }
+  
+  &__btn {
+    text-decoration: none; 
+    text-align: center; 
+    padding: 14px 16px; 
+    border-radius: 14px; 
+    font-weight: 900; 
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    
+    &--accent { 
+      background: linear-gradient(135deg, $blue-color, #1e40af); 
+      color: #fff; 
+      border-color: rgba($blue-color, 0.25); 
+      
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba($blue-color, 0.3);
+      }
+    }
+    
+    &--ghost { 
+      background: transparent; 
+      color: #93c5fd; 
+      border-color: rgba(255,255,255,0.15); 
+      
+      &:hover {
+        background: rgba(255,255,255,0.1);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  &__hint { 
+    margin-top: 12px; 
+    font-size: 12px; 
+    color: #94a3b8; 
+  }
+  
+  &__miniLink { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    margin-top: 10px; 
+  }
+  
+  &__miniAnchor { 
+    color: #60a5fa; 
+    font-weight: 800; 
+    text-decoration: none; 
+    
+    &:hover {
+      color: #93c5fd;
+    }
+  }
+}
+
+// Планшеты
+@media (max-width: 1024px) { 
+  .calc { 
+    padding: 30px 0 60px;
+    
+    &__wrap { 
+      grid-template-columns: 1fr; 
+      gap: 24px;
+    } 
+    
+    &__right { 
+      position: static; 
+    }
+    
+    &__title {
+      font-size: 30px;
+    }
+    
+    &__card {
+      position: static;
+      top: auto;
+    }
+  } 
+}
+
+// Средние планшеты
+@media (max-width: 768px) {
+  .calc {
+    padding: 25px 0 50px;
+    
+    &__wrap {
+      gap: 20px;
+    }
+    
+    &__title {
+      font-size: 26px;
+    }
+    
+    &__sub {
+      font-size: 14px;
+    }
+    
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding: 16px;
+    }
+    
+    &__field--full {
+      grid-column: 1;
+    }
+    
+    &__pills {
+      gap: 6px;
+    }
+    
+    &__pill {
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+    
+    &__card {
+      padding: 16px;
+    }
+    
+    &__totalRow {
+      font-size: 16px;
+    }
+    
+    &__btn {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+  }
+}
+
+// Мобильные устройства
+@media (max-width: 640px) {
+  .calc {
+    padding: 20px 0 40px;
+    
+    &__wrap {
+      gap: 16px;
+    }
+    
+    &__title {
+      font-size: 24px;
+    }
+    
+    &__sub {
+      font-size: 13px;
+    }
+    
+    &__grid {
+      padding: 14px;
+      gap: 10px;
+    }
+    
+    &__input {
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    
+    &__label {
+      font-size: 12px;
+    }
+    
+    &__pill {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    
+    &__check {
+      font-size: 13px;
+      gap: 8px;
+    }
+    
+    &__card {
+      padding: 14px;
+    }
+    
+    &__priceRow {
+      font-size: 13px;
+      padding: 6px 0;
+    }
+    
+    &__totalRow {
+      font-size: 15px;
+    }
+    
+    &__btn {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    
+    &__hint {
+      font-size: 11px;
+    }
+  }
+}
+
+// Маленькие мобильные устройства
+@media (max-width: 480px) {
+  .calc {
+    padding: 16px 0 30px;
+    
+    &__title {
+      font-size: 22px;
+    }
+    
+    &__sub {
+      font-size: 12px;
+    }
+    
+    &__grid {
+      padding: 12px;
+      gap: 8px;
+    }
+    
+    &__input {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
+    
+    &__label {
+      font-size: 11px;
+    }
+    
+    &__pill {
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+    
+    &__check {
+      font-size: 12px;
+    }
+    
+    &__card {
+      padding: 12px;
+    }
+    
+    &__priceRow {
+      font-size: 12px;
+    }
+    
+    &__totalRow {
+      font-size: 14px;
+    }
+    
+    &__btn {
+      padding: 8px 10px;
+      font-size: 12px;
+    }
+    
+    &__hint {
+      font-size: 10px;
+    }
+  }
+}
+
+

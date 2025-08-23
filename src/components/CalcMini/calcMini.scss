@@ -1,0 +1,166 @@
+@use "../../styles/_variables.scss" as *;
+
+.miniCalc {
+  position: relative;
+  background: linear-gradient(180deg, rgba($blue-color, 0.14) 0%, rgba(255,255,255,0.95) 100%);
+  border: 1px solid rgba($blue-color, 0.25);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 25px 80px rgba($blue-color, 0.25);
+  backdrop-filter: blur(18px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 420px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    background: radial-gradient(closest-side, rgba($blue-color,0.25), transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  &__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  &__title { font-size: 22px; font-weight: 900; color: #0f172a; }
+  &__subtitle { font-size: 13px; color: #3c64c7; font-weight: 700; opacity: 0.9; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 12px;
+  }
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    &--full { grid-column: 1 / -1; }
+  }
+  &__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+  }
+  &__input {
+    appearance: none;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 2px solid rgba($blue-color, 0.35);
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    font-weight: 700;
+    color: #0f172a;
+    outline: none;
+    transition: box-shadow 200ms ease, border-color 200ms ease;
+
+    &:focus {
+      border-color: $blue-color;
+      box-shadow: 0 0 0 4px rgba($blue-color, 0.18);
+    }
+  }
+
+  &__pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  &__pill {
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: #eef2ff;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+    &:hover { transform: translateY(-1px); }
+    &.is-active {
+      background: linear-gradient(135deg, $blue-color, #1e40af);
+      color: #fff;
+      border-color: $blue-color;
+      box-shadow: 0 10px 24px rgba($blue-color, 0.35);
+    }
+  }
+
+  &__summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba($blue-color, 0.2);
+    box-shadow: 0 8px 24px rgba($blue-color, 0.15);
+  }
+  &__summaryItem { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    font-size: 14px; 
+    color: #475569; 
+  }
+  &__summaryItem strong { 
+    font-size: 18px; 
+    color: #0f172a; 
+    white-space: nowrap; /* Предотвращаем перенос цены */
+    text-align: right; /* Выравниваем по правому краю */
+  }
+
+  &__cta {
+    margin-top: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 18px;
+    border-radius: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, $blue-color, #1e40af);
+    font-weight: 800;
+    transition: transform 120ms ease, box-shadow 120ms ease;
+    border: 2px solid rgba($blue-color, 0.2);
+    box-shadow: 0 14px 38px rgba($blue-color, 0.3);
+    &:hover { transform: translateY(-2px); box-shadow: 0 18px 48px rgba($blue-color, 0.4); }
+  }
+}
+
+@media (max-width: 968px) {
+  .miniCalc { 
+    &__grid { 
+      grid-template-columns: 1fr; 
+    }
+    
+    &__summary {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    
+    &__summaryItem {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      
+      strong {
+        font-size: 16px;
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .miniCalc {
+    padding: 20px;
+    
+    &__summaryItem strong {
+      font-size: 15px;
+    }
+  }
+}
+
+

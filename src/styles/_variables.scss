@@ -1,0 +1,138 @@
+// Typography
+$font-size-base: 16px;
+$font-primary: var(--font-primary);
+$font-secondary: var(--font-roboto);
+$font-inter: var(--font-inter);
+$font-roboto: var(--font-roboto);
+$font-arial: Arial, Helvetica, sans-serif;
+
+@use "sass:math";
+
+@function rem($px) {
+  @return math.div($px, 16px) * 1rem;
+}
+
+// Transition Variables
+$transition-fast: 0.2s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 1s ease-in-out;
+$transition-bounce: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+// Colors
+$blue-color: #2563ea;
+$accent-color: #10b981; // Зеленый акцентный цвет (для кнопок, успеха)
+$text-color: #5e7f9d;
+$text-secondary: #64748b; // Вторичный текст
+$text-black: #666;
+$white: #ffffff;
+$black: #000000;
+
+// Animation Mixins
+@mixin button-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba($blue-color, 0.25);
+}
+
+@mixin link-hover {
+  color: $blue-color;
+  transform: scale(1.05);
+}
+
+@mixin smooth-transition($property: all) {
+  transition: #{$property} $transition-smooth;
+}
+
+@mixin bounce-hover {
+  transition: transform $transition-slow;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+// Utility Animation Classes
+.hover-lift {
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  &:hover {
+    @include button-hover;
+  }
+}
+
+.hover-scale {
+  transition: transform $transition-normal;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-rotate {
+  transition: transform $transition-normal;
+  &:hover {
+    transform: rotate(5deg) scale(1.05);
+  }
+}
+
+.smooth-hover {
+  @include smooth-transition;
+  &:hover {
+    @include link-hover;
+  }
+}
+
+// Loading Animation
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Utility classes for animations
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background-size: 200px 100%;
+}
+
+.animate-slide-up {
+  animation: slideInUp 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out;
+}

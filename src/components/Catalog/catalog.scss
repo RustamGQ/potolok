@@ -1,0 +1,277 @@
+.catalog {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  .catalog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 20px;
+
+    .catalog-title-section {
+      flex: 1;
+
+      .catalog-title {
+        font-size: 36px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin: 0 0 12px 0;
+        line-height: 1.2;
+      }
+
+      .catalog-subtitle {
+        font-size: 18px;
+        color: #666;
+        margin: 0;
+        line-height: 1.5;
+      }
+    }
+
+    .catalog-results {
+      .results-count {
+        background: #f8f9fa;
+        color: #495057;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .catalog-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+    align-items: start;
+
+    .catalog-sidebar {
+      position: sticky;
+      top: 20px;
+    }
+
+    .catalog-main {
+      .catalog-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        text-align: center;
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid #3b82f6;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-bottom: 20px;
+        }
+
+        p {
+          color: #666;
+          font-size: 16px;
+          margin: 0;
+        }
+      }
+
+      .catalog-empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 20px;
+        text-align: center;
+
+        .empty-icon {
+          font-size: 48px;
+          margin-bottom: 20px;
+        }
+
+        h3 {
+          font-size: 24px;
+          color: #1a1a1a;
+          margin: 0 0 12px 0;
+        }
+
+        p {
+          color: #666;
+          font-size: 16px;
+          margin: 0 0 24px 0;
+        }
+
+        .reset-filters-btn {
+          background: #ff6b6b;
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            background: #ff5252;
+          }
+        }
+      }
+
+      .catalog-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Планшеты
+@media (max-width: 1024px) {
+  .catalog {
+    padding: 30px 16px;
+
+    .catalog-header {
+      margin-bottom: 30px;
+
+      .catalog-title-section {
+        .catalog-title {
+          font-size: 28px;
+        }
+
+        .catalog-subtitle {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .catalog-content {
+      grid-template-columns: 280px 1fr;
+      gap: 30px;
+    }
+  }
+}
+
+// Мобильные устройства
+@media (max-width: 768px) {
+  .catalog {
+    padding: 20px 12px;
+
+    .catalog-header {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      gap: 16px;
+
+      .catalog-title-section {
+        .catalog-title {
+          font-size: 24px;
+          margin-bottom: 8px;
+        }
+
+        .catalog-subtitle {
+          font-size: 14px;
+        }
+      }
+
+      .catalog-results {
+        .results-count {
+          font-size: 12px;
+          padding: 6px 12px;
+        }
+      }
+    }
+
+    .catalog-content {
+      grid-template-columns: 1fr;
+      gap: 20px;
+
+      .catalog-sidebar {
+        position: static;
+        order: 1; // Фильтры сверху
+      }
+
+      .catalog-main {
+        order: 2; // Товары снизу
+
+        .catalog-loading {
+          padding: 60px 20px;
+
+          .loading-spinner {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 16px;
+          }
+
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .catalog-empty {
+          padding: 60px 20px;
+
+          .empty-icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+          }
+
+          h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+          }
+
+          p {
+            font-size: 14px;
+            margin-bottom: 20px;
+          }
+
+          .reset-filters-btn {
+            padding: 10px 20px;
+            font-size: 13px;
+          }
+        }
+
+        .catalog-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+      }
+    }
+  }
+}
+
+// Маленькие мобильные устройства
+@media (max-width: 480px) {
+  .catalog {
+    padding: 16px 8px;
+
+    .catalog-header {
+      .catalog-title-section {
+        .catalog-title {
+          font-size: 22px;
+        }
+
+        .catalog-subtitle {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .catalog-content {
+      .catalog-main {
+        .catalog-grid {
+          gap: 12px;
+        }
+      }
+    }
+  }
+}
