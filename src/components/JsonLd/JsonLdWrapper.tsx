@@ -20,7 +20,7 @@ const businessJsonLd = {
   "openingHours": "Mo-Su 09:00-21:00",
   "priceRange": "₽₽",
   "email": "potolokrostov1@gmail.com",
-  "description": "Натяжные потолки в Ростове-на-Дону, Батайске, Аксае и области. Бесплатный замер, монтаж за 1 день, гарантия 3 года. Цены от 1200₽/м²."
+  "description": "Натяжные потолки в Ростове-на-Дону, Батайске, Аксае и области. Бесплатный замер, монтаж за 1 день, гарантия 3 года. Цены от 290₽/м²."
 };
 
 const faqJsonLd = [
@@ -29,7 +29,7 @@ const faqJsonLd = [
     "name": "Сколько стоит установка натяжных потолков?",
     "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Базовые цены начинаются от 1200₽/м². Точную стоимость рассчитываем при бесплатном замере."
+      "text": "Базовые цены начинаются от 290₽/м². Точную стоимость рассчитываем при бесплатном замере."
     }
   },
   {
@@ -63,7 +63,7 @@ const productJsonLd = (product: { name?: string; image?: string; description?: s
   "offers": {
     "@type": "Offer",
     "priceCurrency": "RUB",
-    "price": product?.price || "1200",
+    "price": product?.price || "290",
     "availability": "https://schema.org/InStock",
     "url": typeof window !== 'undefined' ? window.location.href : ''
   }
