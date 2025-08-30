@@ -36,7 +36,7 @@ export default function CatalogProductCard({ product, citySlug }: CatalogProduct
           width={400}
           height={300}
           className="product-image"
-          priority={false}
+          loading="lazy"
         />
         <div className="product-overlay">
           <Link 

@@ -1151,3 +1151,16 @@
     }
   }
 }
+
+// Скрываем стрелочки на мобильных устройствах
+@media (max-width: 768px) {
+  .number-input-wrapper {
+    .number-input-buttons {
+      display: none !important;
+    }
+    
+    .orderForm__input[type="number"] {
+      padding-right: rem(16px) !important; // Убираем отступ для стрелочек
+    }
+  }
+}

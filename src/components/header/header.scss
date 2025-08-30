@@ -308,7 +308,7 @@
     &.is-open { opacity: 1; visibility: visible; transform: translateY(0); }
 
     li { list-style: none; }
-    a, .header__dropdown-link {
+    a {
         display: flex;
         align-items: center;
         gap: 10px;

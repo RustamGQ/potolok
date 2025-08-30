@@ -101,7 +101,7 @@ function Hero({ city, content }: HeroProps) {
                   <div className="hero__metric-number">4.9</div>
                   <div className="hero__metric-label">Рейтинг клиентов</div>
                 </div>
-                <div className="hero__metric-trend">1200+ отзывов</div>
+                <div className="hero__metric-trend">427+ отзывов</div>
               </div>
               <div className="hero__metric-card">
                 <div className="hero__metric-icon">⚡</div>

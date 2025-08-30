@@ -321,7 +321,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ city, content }) => {
             {photoItems.map((it) => (
               <article key={it.id} className="work-card">
                 <div className="media" style={{ width: '100%', height: 260, overflow: 'hidden', borderRadius: 14, border: '2px solid #2563eb', boxShadow: '0 2px 16px #2563eb22', marginBottom: 8 }}>
-                  <Image src={it.media} alt={it.title} width={400} height={260} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }} />
+                  <Image src={it.media} alt={it.title} width={400} height={260} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }} loading="lazy" />
                 </div>
                 <div className="work-info">
                   <div style={{ color: '#2563eb', fontWeight: 700, fontSize: 20, marginBottom: 4 }}>от 1800 ₽/м²</div>

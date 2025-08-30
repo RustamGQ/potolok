@@ -161,16 +161,16 @@ function Header() {
                                     <li role="none"><a role="menuitem" href="https://wa.me/79895234952" target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a></li>
                                     <li role="none"><a role="menuitem" href="https://t.me/rostovpotolki" target="_blank" rel="noopener noreferrer">🔵 Telegram</a></li>
                                     <li role="none">
-                                        <button
+                                        <a
                                             role="menuitem"
-                                            type="button"
-                                            className="header__dropdown-link"
-                                            onClick={() => setShowOrderForm(true)}
-                                            onMouseOver={e => (e.currentTarget.style.background = '#f1f5f9')}
-                                            onMouseOut={e => (e.currentTarget.style.background = 'none')}
+                                            href="#"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setShowOrderForm(true);
+                                            }}
                                         >
-                                            <span>📋</span> Онлайн-заявка
-                                        </button>
+                                            📋 Онлайн-заявка
+                                        </a>
                                     </li>
                                 </ul>
                             </li>

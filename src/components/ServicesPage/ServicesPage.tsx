@@ -241,6 +241,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ city, content }) => {
                     width={400}
                     height={300}
                     style={{ objectFit: 'cover' }}
+                    loading="lazy"
                   />
                 </div>
                 <div className="item-content">

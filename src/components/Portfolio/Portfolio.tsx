@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { useCity } from '../../contexts/CityContext';
 import { City } from '../../types/city';
+import OrderForm from '../OrderForm/OrderForm';
 import './portfolio.scss';
 
 interface PortfolioProps {
@@ -17,6 +18,7 @@ interface PortfolioProps {
 function Portfolio({ city, content }: PortfolioProps) {
     const { currentCity } = useCity();
     const displayCity = city || currentCity;
+    const [showOrderForm, setShowOrderForm] = useState(false);
     
     // Динамические данные портфолио в зависимости от города
     const portfolioData = [
@@ -266,7 +268,7 @@ function Portfolio({ city, content }: PortfolioProps) {
                         {portfolioData.map((item) => (
                             <div key={item.id}>
                                 <a href="#any">
-                                    <Image src={item.image} alt={item.alt} width={800} height={600} priority={false} />
+                                    <Image src={item.image} alt={item.alt} width={800} height={600} loading="lazy" />
                                 </a>
                             </div>
                         ))}
@@ -335,16 +337,29 @@ function Portfolio({ city, content }: PortfolioProps) {
                             Закажите бесплатный замер и получите персональный расчет стоимости
                         </p>
                         <div className="portfolio__cta-actions">
-                            <button className="portfolio__cta-btn portfolio__cta-btn--primary">
+                            <button 
+                                className="portfolio__cta-btn portfolio__cta-btn--primary"
+                                onClick={() => setShowOrderForm(true)}
+                            >
                                 Заказать замер
                             </button>
-                            <button className="portfolio__cta-btn portfolio__cta-btn--secondary">
+                            <button 
+                                className="portfolio__cta-btn portfolio__cta-btn--secondary"
+                                onClick={() => window.location.href = `/${displayCity.slug}/works`}
+                            >
                                 Посмотреть все работы
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            {/* OrderForm Modal */}
+            {showOrderForm && (
+                <div className="orderForm-overlay" style={{zIndex: 2000}}>
+                    <OrderForm onClose={() => setShowOrderForm(false)} />
+                </div>
+            )}
         </section>
     );
 }

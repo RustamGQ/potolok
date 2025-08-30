@@ -75,7 +75,7 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
     case 'catalog':
       return generateSEOMeta(city, 'Каталог', 
         `Каталог натяжных потолков в ${city.name} - 25+ вариантов | ПОТОЛКИ`,
-        `Каталог натяжных потолков в ${city.name}. Матовые, глянцевые, сатиновые потолки. Цены от 1200₽/м². Бесплатный замер.`
+        `Каталог натяжных потолков в ${city.name}. Матовые, глянцевые, сатиновые потолки. Цены от 290₽/м². Бесплатный замер.`
       );
     case 'services':
       return generateSEOMeta(city, 'Услуги', 
@@ -109,8 +109,8 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
       );
     default:
       return generateSEOMeta(city, 'Главная', 
-        `Натяжные потолки в ${city.name} - цены от 1200₽/м² | ПОТОЛКИ`,
-        `Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 1200₽/м².`
+        `Натяжные потолки в ${city.name} - цены от 290₽/м² | ПОТОЛКИ`,
+        `Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 290₽/м².`
       );
   }
 }

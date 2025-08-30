@@ -142,14 +142,14 @@ export const catalogProducts: CeilingProduct[] = [
     id: 'dvukhurovnevye-s-podsvetkoy',
     name: 'Двухуровневые потолки с подсветкой',
     description: 'Современные двухуровневые потолки с LED-подсветкой. Создают объем и глубину в помещении. Идеальны для создания зонирования.',
-    price: { min: 1200, max: 1800, unit: '₽/м²' },
+    price: { min: 290, max: 1800, unit: '₽/м²' },
     image: '/img/work-10.jpg',
     textures: ['matovye', 'glyantsevye'],
     types: ['dvukhurovnevye', 's-podsvetkoy'],
     rooms: ['gostinaya', 'spalnya', 'detskaya'],
     manufacturers: ['bauf', 'teqtum'],
     features: ['LED-подсветка', 'Двухуровневая конструкция', 'Зонирование пространства'],
-    seoTitle: 'Двухуровневые потолки с подсветкой - от 1200₽/м²',
+    seoTitle: 'Двухуровневые потолки с подсветкой - от 290₽/м²',
     seoDescription: 'Двухуровневые натяжные потолки с LED-подсветкой. Современное решение для создания объема и зонирования.'
   },
   {
@@ -212,14 +212,14 @@ export const catalogProducts: CeilingProduct[] = [
     id: '3d-potolki',
     name: '3D потолки с объемными элементами',
     description: 'Объемные потолки с рельефными элементами и фактурой. Создают уникальный визуальный эффект.',
-    price: { min: 1200, max: 2000, unit: '₽/м²' },
+    price: { min: 290, max: 2000, unit: '₽/м²' },
     image: '/img/work-15.jpg',
     textures: ['fakturnye'],
     types: ['3d'],
     rooms: ['gostinaya', 'spalnya', 'prikhozhaya'],
     manufacturers: ['cerutti', 'lumfer'],
     features: ['Рельефные элементы', 'Объемная фактура', 'Выразительный дизайн'],
-    seoTitle: '3D потолки с объемными элементами - от 1200₽/м²',
+    seoTitle: '3D потолки с объемными элементами - от 290₽/м²',
     seoDescription: '3D натяжные потолки с рельефными элементами. Создайте выразительный дизайн в интерьере.'
   },
   {

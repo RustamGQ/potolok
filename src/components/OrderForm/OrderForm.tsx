@@ -259,7 +259,10 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
         <button className="orderForm__close" onClick={onClose}>×</button>
         <div className="orderForm__header" style={{ background: 'rgba(30, 64, 175, 0.10)', borderRadius: '28px 28px 0 0', padding: '40px 40px 20px', borderBottom: '1px solid #dbeafe' }}>
           <h2 style={{ color: '#2563eb', fontWeight: 900, fontSize: 32, marginBottom: 8 }}>Заказать бесплатный замер</h2>
-          <p style={{ color: '#3b82f6', fontSize: 17, margin: 0 }}>Замерщик приедет в удобное время и рассчитает точную стоимость</p>
+          <p style={{ color: '#3b82f6', fontSize: 17, margin: '0 0 12px 0' }}>Замерщик приедет в удобное время и рассчитает точную стоимость</p>
+          <p style={{ color: '#64748b', fontSize: 15, margin: 0, lineHeight: 1.4 }}>
+            Так же вы можете сделать заказ по номеру: <a href="tel:+79895234952" style={{ color: '#2563eb', fontWeight: 600, textDecoration: 'none' }}>+7 (989) 523-49-52</a>
+          </p>
         </div>
 
         <div className="orderForm__progress" style={{ background: 'rgba(30, 64, 175, 0.06)', borderBottom: '1px solid #dbeafe', padding: '20px 40px' }}>

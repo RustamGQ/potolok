@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // output: 'export', // Отключаем для работы API routes
-  trailingSlash: true,
+  trailingSlash: false,
   // basePath: '/potolok', // Временно отключаем для тестирования API
 
   // 🚀 Оптимизация производительности
@@ -59,8 +59,28 @@ const nextConfig: NextConfig = {
         chunks: 'all',
         priority: 10,
       };
+
+      // Минификация CSS
+      config.optimization.minimize = true;
     }
     return config;
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'header',
+            key: 'x-forwarded-proto',
+            value: 'http',
+          },
+        ],
+        destination: 'https://potolkivip-rnd.ru/:path*',
+        permanent: true,
+      },
+    ];
   },
 
   async rewrites() {
@@ -98,6 +118,10 @@ const nextConfig: NextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=31536000; includeSubDomains',
+          },
         ],
       },
       {
@@ -111,6 +135,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/img/(.*)',
         headers: [
           {
             key: 'Cache-Control',

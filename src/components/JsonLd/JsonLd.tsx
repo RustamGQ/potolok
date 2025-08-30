@@ -108,7 +108,7 @@ export default function JsonLd({ type }: JsonLdProps) {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.9",
-      "reviewCount": "1200",
+      "reviewCount": "427",
       "bestRating": "5",
       "worstRating": "1"
     }
