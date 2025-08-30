@@ -158,15 +158,17 @@ function Portfolio({ city, content }: PortfolioProps) {
             });
 
             figure.addEventListener('touchstart', (event) => {
+                event.preventDefault();
                 xClick = event.changedTouches[0].pageX;
                 mouseDown = true;
-            });
+            }, { passive: false });
 
             figure.addEventListener('touchend', () => {
                 mouseDown = false;
             });
 
             figure.addEventListener('touchmove', (event) => {
+                event.preventDefault();
                 if (mouseDown) {
                     const xMove = event.changedTouches[0].pageX;
                     if (Math.floor(xClick - xMove) > 5) {
@@ -179,7 +181,7 @@ function Portfolio({ city, content }: PortfolioProps) {
                         mouseDown = false;
                     }
                 }
-            });
+            }, { passive: false });
         }
 
         // Запуск карусели

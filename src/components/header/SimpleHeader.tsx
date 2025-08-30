@@ -139,9 +139,6 @@ function SimpleHeader() {
                                      +7 (989) 523-49-52
                                  </a>
                             </div>
-                            <button className="header__top-callback">
-                                <span>Позвонить</span>
-                            </button>
                         </div>
 
                         <button

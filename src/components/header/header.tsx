@@ -239,7 +239,7 @@ function Header() {
             {/* Mobile menu */}
             <div className={`header__mobile ${isMobileMenuOpen ? 'is-open' : ''}`} onClick={() => setIsMobileMenuOpen(false)}>
                 <div className="header__mobile-panel" onClick={(e) => e.stopPropagation()}>
-                    {/* Город и телефон в мобильном меню */}
+                    {/* Город, кнопка заявки и телефон в мобильном меню */}
                     <div className="header__mobile-header">
                         <div className="header__mobile-city">
                             <button
@@ -310,6 +310,30 @@ function Header() {
                             )}
                         </div>
                         
+                        {/* Кнопка онлайн-заявки между городом и телефоном */}
+                        <button
+                            type="button"
+                            className="header__mobile-cta"
+                            style={{
+                                width: '100%',
+                                background: '#2563eb',
+                                color: 'white',
+                                fontWeight: 700,
+                                fontSize: '16px',
+                                border: 'none',
+                                borderRadius: '12px',
+                                padding: '16px 0',
+                                marginTop: '8px',
+                                marginBottom: '8px',
+                                cursor: 'pointer',
+                                boxShadow: '0 4px 20px rgba(37,99,235,0.10)',
+                                transition: 'background 0.2s',
+                            }}
+                            onClick={() => { setShowOrderForm(true); setIsMobileMenuOpen(false); }}
+                        >
+                            📋 Онлайн-заявка
+                        </button>
+                        
                         <div className="header__mobile-phone">
                             <a href="tel:+79895234952" className="header__mobile-phone-link">
                                 <span className="header__mobile-phone-icon">📞</span>
@@ -326,31 +350,6 @@ function Header() {
                         <li><Link href={`/${currentCity.slug}/calculator`} onClick={() => setIsMobileMenuOpen(false)}>Калькулятор цен</Link></li>
                         <li><Link href={`/${currentCity.slug}/works`} onClick={() => setIsMobileMenuOpen(false)}>Наши работы</Link></li>
                         <li><Link href={`/${currentCity.slug}/reviews`} onClick={() => setIsMobileMenuOpen(false)}>Отзывы</Link></li>
-                                                 <li><a href="tel:+79895234952" className="header__mobile-call" onClick={() => setIsMobileMenuOpen(false)}>Позвонить</a></li>
-                        <li>
-                            <button
-                                type="button"
-                                className="header__mobile-cta"
-                                style={{
-                                    width: '100%',
-                                    background: '#2563eb',
-                                    color: 'white',
-                                    fontWeight: 700,
-                                    fontSize: '16px',
-                                    border: 'none',
-                                    borderRadius: '12px',
-                                    padding: '16px 0',
-                                    marginTop: '8px',
-                                    marginBottom: '8px',
-                                    cursor: 'pointer',
-                                    boxShadow: '0 4px 20px rgba(37,99,235,0.10)',
-                                    transition: 'background 0.2s',
-                                }}
-                                onClick={() => { setShowOrderForm(true); setIsMobileMenuOpen(false); }}
-                            >
-                                📋 Онлайн-заявка
-                            </button>
-                        </li>
                     </ul>
                     
                     {/* Социальные сети */}
