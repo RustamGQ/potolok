@@ -21,9 +21,12 @@ export default function CatalogFilters({
   currentFilter, 
   onFilterChange 
 }: CatalogFiltersProps) {
+  const LIGHTING_TYPES: CeilingType[] = ['svetovye-linii','paryashchie','trek-nakladnoy','trek-vstroennyy','trek-magnitnye'];
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    textures: true,
-    types: true,
+    cornices: false,
+    lighting: false,
+    textures: false,
+    types: false,
     rooms: false,
     manufacturers: false,
     services: false
@@ -39,7 +42,14 @@ export default function CatalogFilters({
   const handleFilterChange = (filterType: string, value: string | number) => {
     const newFilter = { ...currentFilter };
     
-    if (filterType === 'textures' && typeof value === 'string') {
+    if (filterType === 'cornices' && typeof value === 'string') {
+      // Для карнизов используем тип 'karnizy'
+      if (newFilter.types.includes('karnizy' as CeilingType)) {
+        newFilter.types = newFilter.types.filter(item => item !== 'karnizy');
+      } else {
+        newFilter.types = [...newFilter.types, 'karnizy' as CeilingType];
+      }
+    } else if (filterType === 'textures' && typeof value === 'string') {
       if (newFilter.textures.includes(value as TextureType)) {
         newFilter.textures = newFilter.textures.filter(item => item !== value);
       } else {
@@ -76,6 +86,8 @@ export default function CatalogFilters({
 
   const isOptionChecked = (filterType: string, value: string): boolean => {
     switch (filterType) {
+      case 'cornices':
+        return currentFilter.types.includes('karnizy' as CeilingType);
       case 'textures':
         return currentFilter.textures.includes(value as TextureType);
       case 'types':
@@ -115,7 +127,18 @@ export default function CatalogFilters({
     filterType: keyof Omit<CatalogFilter, 'priceRange'>
   ) => {
     const isExpanded = expandedSections[sectionKey];
-    const activeCount = currentFilter[filterType].length;
+    // Специальная логика для карнизов, видов потолков и освещения
+    let activeCount = 0;
+    if (sectionKey === 'cornices') {
+      activeCount = currentFilter.types.includes('karnizy' as CeilingType) ? 1 : 0;
+    } else if (sectionKey === 'types') {
+      // Для "Виды потолков" не считаем карнизы и пункты из освещения
+      activeCount = currentFilter.types.filter(t => !(['karnizy', ...LIGHTING_TYPES] as string[]).includes(t)).length;
+    } else if (sectionKey === 'lighting') {
+      activeCount = currentFilter.types.filter(t => LIGHTING_TYPES.includes(t as CeilingType)).length;
+    } else {
+      activeCount = currentFilter[filterType].length;
+    }
 
     return (
       <div className="filter-section">
@@ -166,11 +189,17 @@ export default function CatalogFilters({
       </div>
 
       <div className="filters-content">
-        {renderFilterSection('По фактуре', 'textures', filters.textures, 'textures')}
-        {renderFilterSection('Виды потолков', 'types', filters.types, 'types')}
-        {renderFilterSection('Помещение', 'rooms', filters.rooms, 'rooms')}
+        {renderFilterSection('Освещение', 'lighting', filters.types.filter(t => LIGHTING_TYPES.includes(t.value as CeilingType)), 'types')}
+        {renderFilterSection('Карнизы', 'cornices', filters.types.filter(t => t.value === 'karnizy'), 'types')}
+        {renderFilterSection('По фактуре', 'textures', filters.textures.filter(t => t.value !== 'cold-stretch'), 'textures')}
+        {renderFilterSection(
+          'Виды потолков',
+          'types',
+          filters.types.filter(t => !(([...LIGHTING_TYPES, 'besshchelevye', 'double-vision', '3d', 'osveshchenie', 'bagety', 'karnizy', 'dopolnitelnye-uslugi'] as string[]).includes(t.value))),
+          'types'
+        )}
+        {/* {renderFilterSection('Помещение', 'rooms', filters.rooms, 'rooms')} */}
         {renderFilterSection('Производители', 'manufacturers', filters.manufacturers, 'manufacturers')}
-        {renderFilterSection('Услуги', 'services', filters.services, 'services')}
       </div>
 
       {hasActiveFilters && (
@@ -199,7 +228,7 @@ export default function CatalogFilters({
                 </button>
               </span>
             ))}
-            {currentFilter.rooms.map(room => (
+            {/* {currentFilter.rooms.map(room => (
               <span key={room} className="active-filter-tag">
                 {filters.rooms.find(f => f.value === room)?.label}
                 <button
@@ -209,7 +238,7 @@ export default function CatalogFilters({
                   ×
                 </button>
               </span>
-            ))}
+            ))} */}
             {currentFilter.manufacturers.map(manufacturer => (
               <span key={manufacturer} className="active-filter-tag">
                 {filters.manufacturers.find(f => f.value === manufacturer)?.label}
@@ -221,17 +250,7 @@ export default function CatalogFilters({
                 </button>
               </span>
             ))}
-            {currentFilter.services.map(service => (
-              <span key={service} className="active-filter-tag">
-                {filters.services.find(f => f.value === service)?.label}
-                <button
-                  onClick={() => handleFilterChange('services', service)}
-                  className="remove-filter-btn"
-                >
-                  ×
-                </button>
-              </span>
-            ))}
+            {/* Удалили блок активных тегов для услуг */}
           </div>
         </div>
       )}

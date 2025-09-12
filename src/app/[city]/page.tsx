@@ -6,7 +6,7 @@ import About from '../../components/About/About';
 import Services from '../../components/Services/Services';
 import Portfolio from '../../components/Portfolio/Portfolio';
 import WorkZone from '../../components/WorkZone/WorkZone';
-import Footer from '../../components/Footer/Footer';
+
 import { generateCityContent, generateSEOMeta } from '../../lib/content-generator';
 import "../../styles/reset.css";
 
@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
   }
 
   const seoMeta = generateSEOMeta(city, 'Главная', 
-    `Натяжные потолки в ${city.name} - цены от 290₽/м² | ПОТОЛКИ`,
-`Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 290₽/м². Бесплатный замер, гарантия качества.`
+    `Натяжные потолки в ${city.name} - цены от 330₽/м² | ПОТОЛКИ`,
+`Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 330₽/м². Бесплатный замер, гарантия качества.`
   );
 
   return {
@@ -44,7 +44,17 @@ export async function generateMetadata({ params }: CityPageProps): Promise<Metad
     keywords: seoMeta.keywords,
     openGraph: seoMeta.openGraph,
     alternates: {
-              canonical: `https://potolkivip-rnd.ru/${city.slug}`
+      canonical: `https://potolkivip-rnd.ru/${city.slug}`,
+      languages: {
+        'ru-RU': `https://potolkivip-rnd.ru/${city.slug}`,
+      }
+    },
+    other: {
+      'hreflang': 'ru-RU',
+      'geo.region': 'RU-ROS',
+      'geo.placename': city.name,
+      'geo.position': `${city.coordinates?.lat};${city.coordinates?.lng}`,
+      'ICBM': `${city.coordinates?.lat}, ${city.coordinates?.lng}`,
     }
   };
 }
@@ -66,7 +76,7 @@ export default async function CityPage({ params }: CityPageProps) {
       <About key={`about-${city.slug}`} city={city} content={cityContent.about} />
       <Services key={`services-${city.slug}`} city={city} content={cityContent.services} />
       <WorkZone key={`workzone-${city.slug}`} city={city} />
-      <Footer />
+      
     </>
   );
 }

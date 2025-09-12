@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
-import Footer from '../../components/Footer/Footer';
+
 import '../../styles/faq.scss';
 
 export const metadata: Metadata = {
@@ -12,10 +12,10 @@ export const metadata: Metadata = {
     description: 'Ответы на частые вопросы о натяжных потолках. Установка, материалы, гарантия.',
     type: 'website',
     locale: 'ru_RU',
-    url: 'https://yourdomain.com/faq',
+    url: 'https://potolkivip-rnd.ru/faq',
   },
   alternates: {
-    canonical: 'https://yourdomain.com/faq',
+    canonical: 'https://potolkivip-rnd.ru/faq',
   },
 };
 
@@ -118,7 +118,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <Footer />
+      
     </>
   );
 }

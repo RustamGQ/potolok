@@ -40,16 +40,42 @@ function Hero({ city, content }: HeroProps) {
   };
 
   React.useEffect(() => {
-    const animate = () => {
-      const s = stateRef.current;
-      // Плавное приближение к целевым значениям (инерция)
-      s.yaw += (s.targetYaw - s.yaw) * 0.08;
-      s.pitch += (s.targetPitch - s.pitch) * 0.08;
-      setTransform(s.yaw, s.pitch);
-      s.raf = requestAnimationFrame(animate);
+    const root = roomRef.current;
+    if (!root) return;
+
+    // Уважать уменьшение анимации
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    let started = false;
+    const startAnimation = () => {
+      if (started) return;
+      started = true;
+      const animate = () => {
+        const s = stateRef.current;
+        s.yaw += (s.targetYaw - s.yaw) * 0.08;
+        s.pitch += (s.targetPitch - s.pitch) * 0.08;
+        setTransform(s.yaw, s.pitch);
+        s.raf = requestAnimationFrame(animate);
+      };
+      stateRef.current.raf = requestAnimationFrame(animate);
     };
-    const raf = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(raf);
+
+    // Запускаем анимацию только когда секция видима
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        startAnimation();
+        observer.disconnect();
+      }
+    }, { rootMargin: '0px 0px -20% 0px', threshold: 0.2 });
+
+    observer.observe(root);
+
+    return () => {
+      observer.disconnect();
+      if (stateRef.current.raf) cancelAnimationFrame(stateRef.current.raf);
+    };
   }, []);
 
   const handleOrderClick = () => {
@@ -123,7 +149,7 @@ function Hero({ city, content }: HeroProps) {
 
                 <h1 className="hero__title">
                   <span className="hero__title-line hero__title-line--main">{content?.title || `Натяжные потолки в ${displayCity.namePrepositional}`}</span>
-                  <span className="hero__title-line hero__title-line--highlight">от 290₽/м²</span>
+                  <span className="hero__title-line hero__title-line--highlight">от 330₽/м²</span>
                   <span className="hero__title-sub">Бесплатный замер • Работы займут ~ один рабочий день • Гарантия 5 лет</span>
                 </h1>
 
@@ -173,7 +199,7 @@ function Hero({ city, content }: HeroProps) {
             </div>
 
             {/* Нижний блок с преимуществами */}
-            <div className="hero__advantages">
+            <div className="hero__advantages" ref={roomRef}>
               <div className="hero__advantage">
                 <div className="hero__advantage-icon">🚀</div>
                 <div className="hero__advantage-text">

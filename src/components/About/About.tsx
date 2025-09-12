@@ -39,7 +39,11 @@ function About({ city, content }: AboutProps) {
                             <div className="about__badge-icon">🏢</div>
                         </div>
                         <h2 className="about__title">
-                            {content?.title || `О нашей <span className="about__title-accent">компании</span>`}
+                            {content?.title || (
+                                <>
+                                    О нашей <span className="about__title-accent">компании</span>
+                                </>
+                            )}
                         </h2>
                         <p className="about__subtitle">
                             {content?.description || `Мы специализируемся на установке качественных натяжных потолков в ${displayCity.name} и области. 
@@ -58,7 +62,7 @@ function About({ city, content }: AboutProps) {
                                     <div className="about__stat-label">лет опыта</div>
                                 </div>
                                 <div className="about__stat-card">
-                                    <div className="about__stat-number">2000+</div>
+                                    <div className="number">4,850+</div>
                                     <div className="about__stat-label">довольных клиентов</div>
                                 </div>
                                 <div className="about__stat-card">
@@ -165,6 +169,13 @@ function About({ city, content }: AboutProps) {
                                         <div className="about__advantage-content">
                                             <h4>Встроенное освещение</h4>
                                             <p>Устанавливаем светильники, LED-ленты, подсветку.</p>
+                                        </div>
+                                    </div>
+                                    <div className="about__advantage">
+                                        <div className="about__advantage-icon">✨</div>
+                                        <div className="about__advantage-content">
+                                            <h4>Световые линии</h4>
+                                            <p>Современные потолки со встроенными световыми линиями для уникальной атмосферы.</p>
                                         </div>
                                     </div>
                                 </div>

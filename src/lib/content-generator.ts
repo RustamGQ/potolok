@@ -131,34 +131,58 @@ function getRandomElement<T>(array: T[]): T {
 export function generateCityContent(city: City) {
   const replaceCity = (text: string) => text.replace(/{city}/g, city.name);
   
+  // Используем уникальные данные города, если они есть
+  const workExamples = city.workExamples || '';
+  const specialOffers = city.specialOffers || '';
+  const coverage = city.coverage || '';
+  
+  // Создаем уникальные описания на основе данных города
+  const createUniqueDescription = (baseTemplate: string) => {
+    let description = replaceCity(baseTemplate);
+    
+    if (workExamples) {
+      description += ` ${workExamples}.`;
+    }
+    
+    if (specialOffers) {
+      description += ` ${specialOffers}.`;
+    }
+    
+    if (coverage) {
+      description += ` ${coverage}.`;
+    }
+    
+    return description;
+  };
+  
   return {
     hero: {
       title: replaceCity(getRandomElement(contentTemplates.hero.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.hero.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.hero.descriptions))
     },
     about: {
       title: replaceCity(getRandomElement(contentTemplates.about.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.about.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.about.descriptions))
     },
     services: {
       title: replaceCity(getRandomElement(contentTemplates.services.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.services.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.services.descriptions))
     },
     catalog: {
       title: replaceCity(getRandomElement(contentTemplates.catalog.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.catalog.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.catalog.descriptions))
     },
     works: {
       title: replaceCity(getRandomElement(contentTemplates.works.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.works.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.works.descriptions))
     },
     reviews: {
       title: replaceCity(getRandomElement(contentTemplates.reviews.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.reviews.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.reviews.descriptions))
     },
     faq: {
       title: replaceCity(getRandomElement(contentTemplates.faq.titles)),
-      description: replaceCity(getRandomElement(contentTemplates.faq.descriptions))
+      description: createUniqueDescription(getRandomElement(contentTemplates.faq.descriptions))
     }
   };
 }
@@ -224,7 +248,7 @@ export function generateCityFAQ(city: City) {
   const faqTemplates = [
     {
       question: `Сколько стоит установка натяжных потолков в ${city.name}?`,
-      answer: `Стоимость установки натяжных потолков в ${city.name} зависит от площади помещения, типа материала и сложности монтажа. Базовые цены начинаются от 290₽/м². Точную стоимость рассчитываем при бесплатном замере.`
+      answer: `Стоимость установки натяжных потолков в ${city.name} зависит от площади помещения, типа материала и сложности монтажа. Базовые цены начинаются от 350₽/м². Точную стоимость рассчитываем при бесплатном замере.`
     },
     {
       question: `Как долго устанавливаются натяжные потолки в ${city.name}?`,

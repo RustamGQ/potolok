@@ -14,8 +14,8 @@ const priceList = {
       {
         name: "MSD Evolution, Perfekt",
         items: [
-          { texture: "Матовые и сатиновые белые", width: "3.2м", price: "400₽/м²", priceLarge: "395₽/м²" },
-          { texture: "Матовые и сатиновые белые", width: "3.6м", price: "405₽/м²", priceLarge: "400₽/м²" },
+          { texture: "Матовые и сатиновые белые", width: "3.2м", price: "355₽/м²", priceLarge: "350₽/м²" },
+          { texture: "Матовые и сатиновые белые", width: "3.6м", price: "360₽/м²", priceLarge: "355₽/м²" },
           { texture: "Матовые и сатиновые белые", width: "5м", price: "435₽/м²", priceLarge: "430₽/м²" },
           { texture: "Глянцевые белые", width: "3.2м", price: "410₽/м²", priceLarge: "405₽/м²" },
           { texture: "Глянцевые белые", width: "3.6м", price: "415₽/м²", priceLarge: "410₽/м²" },
@@ -242,6 +242,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ city, content }) => {
                     height={300}
                     style={{ objectFit: 'cover' }}
                     loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                   />
                 </div>
                 <div className="item-content">
@@ -253,7 +254,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ city, content }) => {
                     ))}
                   </div>
                   <div className="item-price">
-                    от {product.price.min}{product.price.unit}
+                    от 330₽/м²
                   </div>
                   <Link href={city ? `/${city.slug}/catalog/${product.id}` : `/catalog/${product.id}`} className="btn-outline-small">
                     Подробнее

@@ -75,7 +75,7 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
     case 'catalog':
       return generateSEOMeta(city, 'Каталог', 
         `Каталог натяжных потолков в ${city.name} - 25+ вариантов | ПОТОЛКИ`,
-        `Каталог натяжных потолков в ${city.name}. Матовые, глянцевые, сатиновые потолки. Цены от 290₽/м². Бесплатный замер.`
+        `Каталог натяжных потолков в ${city.name}. Матовые, глянцевые, сатиновые потолки. Цены от 330₽/м². Бесплатный замер.`
       );
     case 'services':
       return generateSEOMeta(city, 'Услуги', 
@@ -109,8 +109,8 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
       );
     default:
       return generateSEOMeta(city, 'Главная', 
-        `Натяжные потолки в ${city.name} - цены от 290₽/м² | ПОТОЛКИ`,
-        `Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 290₽/м².`
+        `Натяжные потолки в ${city.name} - цены от 350₽/м² | ПОТОЛКИ`,
+`Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 330₽/м².`
       );
   }
 }
@@ -195,6 +195,33 @@ export function generatePageContent(citySlug: string, page?: string) {
 // Генерация sitemap для всех городов
 export function generateSitemap() {
   const sitemap = [];
+  
+  // Корневые и статические страницы
+  sitemap.push({
+    url: `https://potolkivip-rnd.ru/`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 1.0
+  });
+  const topLevelPages = [
+    'about',
+    'services',
+    'works',
+    'reviews',
+    'faq',
+    'calculator',
+    'privacy-policy',
+    'terms',
+    'personal-data-consent'
+  ];
+  for (const page of topLevelPages) {
+    sitemap.push({
+      url: `https://potolkivip-rnd.ru/${page}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7
+    });
+  }
   
   for (const city of cities) {
     // Главная страница города

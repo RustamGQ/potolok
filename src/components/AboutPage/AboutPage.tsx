@@ -62,7 +62,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ city, content }) => {
             ) : (
               <>
                 <div className="number-item">
-                  <div className="number">2000+</div>
+                                          <div className="number">4,850+</div>
                   <div className="label">Установленных потолков</div>
                 </div>
                 <div className="number-item">

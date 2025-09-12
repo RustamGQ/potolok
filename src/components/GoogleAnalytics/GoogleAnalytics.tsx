@@ -7,6 +7,13 @@ interface GoogleAnalyticsProps {
 }
 
 export default function GoogleAnalytics({ GA_MEASUREMENT_ID }: GoogleAnalyticsProps) {
+  const isProd = process.env.NODE_ENV === 'production';
+  const hasId = GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX';
+
+  if (!isProd || !hasId) {
+    return null;
+  }
+
   return (
     <>
       <Script

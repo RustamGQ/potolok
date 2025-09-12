@@ -234,7 +234,7 @@ const photoItems: WorkItem[] = [
     id: 27,
     title: 'Современная работа',
     subtitle: 'Стиль и качество',
-    media: '/img/work-27jpg.jpg',
+    media: '/img/work-27.jpg',
     mediaType: 'image',
     description: 'Современная работа с акцентом на стиль и качество исполнения.',
   },
@@ -321,7 +321,15 @@ const WorksPage: React.FC<WorksPageProps> = ({ city, content }) => {
             {photoItems.map((it) => (
               <article key={it.id} className="work-card">
                 <div className="media" style={{ width: '100%', height: 260, overflow: 'hidden', borderRadius: 14, border: '2px solid #2563eb', boxShadow: '0 2px 16px #2563eb22', marginBottom: 8 }}>
-                  <Image src={it.media} alt={it.title} width={400} height={260} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }} loading="lazy" />
+                  <Image 
+                    src={it.media} 
+                    alt={it.title} 
+                    width={400} 
+                    height={260} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 12 }} 
+                    loading="lazy"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
+                  />
                 </div>
                 <div className="work-info">
                   <div style={{ color: '#2563eb', fontWeight: 700, fontSize: 20, marginBottom: 4 }}>от 1800 ₽/м²</div>
@@ -340,7 +348,7 @@ const WorksPage: React.FC<WorksPageProps> = ({ city, content }) => {
                   </div>
                   <div style={{ display: 'flex', gap: 10 }}>
                     <Link href="/catalog" className="btn-more" style={{ flex: 1, background: '#2563eb', color: '#fff', borderRadius: 8, padding: '8px 0', fontWeight: 600, textDecoration: 'none', boxShadow: '0 2px 8px #2563eb22', letterSpacing: 0.5, textAlign: 'center' }}>Подробнее</Link>
-                    <a href="https://wa.me/79000000000" target="_blank" rel="noopener noreferrer" className="btn-order" style={{ flex: 1, background: '#fff', color: '#2563eb', border: '2px solid #2563eb', borderRadius: 8, padding: '8px 0', fontWeight: 600, textDecoration: 'none', boxShadow: '0 2px 8px #2563eb22', letterSpacing: 0.5, textAlign: 'center' }}>Заказать</a>
+                    <a href="https://wa.me/79895234952" target="_blank" rel="noopener noreferrer" className="btn-order" style={{ flex: 1, background: '#fff', color: '#2563eb', border: '2px solid #2563eb', borderRadius: 8, padding: '8px 0', fontWeight: 600, textDecoration: 'none', boxShadow: '0 2px 8px #2563eb22', letterSpacing: 0.5, textAlign: 'center' }}>Заказать</a>
                   </div>
                 </div>
               </article>

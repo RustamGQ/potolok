@@ -28,7 +28,7 @@ function CatalogContent({ citySlug, content }: CatalogProps) {
     rooms: [],
     manufacturers: [],
     services: [],
-    priceRange: [0, 10000]
+    priceRange: [0, 20000]
   });
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,7 +43,7 @@ function CatalogContent({ citySlug, content }: CatalogProps) {
       services: (params.get('services')?.split(',').filter(Boolean) || []) as ServiceType[],
       priceRange: [
         parseInt(params.get('minPrice') || '0'),
-        parseInt(params.get('maxPrice') || '10000')
+        parseInt(params.get('maxPrice') || '20000')
       ]
     };
 
@@ -82,7 +82,7 @@ function CatalogContent({ citySlug, content }: CatalogProps) {
     if (filter.priceRange[0] > 0) {
       params.set('minPrice', filter.priceRange[0].toString());
     }
-    if (filter.priceRange[1] < 10000) {
+    if (filter.priceRange[1] < 20000) {
       params.set('maxPrice', filter.priceRange[1].toString());
     }
 

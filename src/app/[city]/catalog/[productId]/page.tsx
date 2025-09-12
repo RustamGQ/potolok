@@ -6,6 +6,7 @@ import { generatePageMetadata } from '../../../../lib/page-generator';
 import Image from 'next/image';
 import Link from 'next/link';
 import './productPage.scss';
+import OrderFormTrigger from '../../../../components/OrderForm/OrderFormTrigger';
 
 interface ProductPageProps {
   params: Promise<{
@@ -115,9 +116,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 >
                   Рассчитать стоимость
                 </Link>
-                <button className="order-btn">
-                  Заказать потолок
-                </button>
+                <OrderFormTrigger className="order-btn">Заказать потолок</OrderFormTrigger>
               </div>
             </div>
 
@@ -197,9 +196,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               >
                 Рассчитать стоимость
               </Link>
-              <button className="cta-order-btn">
-                Заказать замер
-              </button>
+              <OrderFormTrigger className="cta-order-btn">Заказать замер</OrderFormTrigger>
             </div>
           </div>
         </div>

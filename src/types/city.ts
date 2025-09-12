@@ -14,6 +14,10 @@ export interface City {
   description: string;
   seoTitle: string;
   seoDescription: string;
+  // Уникальные данные для каждого города
+  workExamples?: string;
+  specialOffers?: string;
+  coverage?: string;
 }
 
 export interface CityData {

@@ -3,7 +3,7 @@ import { distantCities } from '../../lib/cities';
 import Portfolio from "../../components/Portfolio/Portfolio";
 import About from "../../components/About/About";
 import Services from "../../components/Services/Services";
-import Footer from "../../components/Footer/Footer";
+
 import CityProvider from "../../contexts/CityContext";
 import "../../styles/reset.css";
 import "./distant-cities.scss";
@@ -64,7 +64,7 @@ export default function DistantCitiesPage() {
       <Portfolio />
       <About />
       <Services />
-      <Footer />
+      
     </CityProvider>
   );
 }

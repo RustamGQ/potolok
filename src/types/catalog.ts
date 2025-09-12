@@ -40,6 +40,9 @@ export type CeilingType =
   | 'double-vision'
   | '3d'
   | 'osveshchenie'
+  | 'trek-nakladnoy'
+  | 'trek-vstroennyy'
+  | 'trek-magnitnye'
   | 'bagety'
   | 'karnizy'
   | 'dopolnitelnye-uslugi';
@@ -126,6 +129,9 @@ export const TYPE_LABELS: Record<CeilingType, string> = {
   'double-vision': 'Double Vision',
   '3d': '3D потолки',
   'osveshchenie': 'Освещение',
+  'trek-nakladnoy': 'Трек накладной',
+  'trek-vstroennyy': 'Трек встроенный',
+  'trek-magnitnye': 'Магнитные треки',
   'bagety': 'Багеты',
   'karnizy': 'Карнизы',
   'dopolnitelnye-uslugi': 'Дополнительные услуги'

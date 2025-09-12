@@ -41,7 +41,7 @@ function Footer() {
     ];
 
     const achievements = [
-        { number: "2000+", text: "Довольных клиентов" },
+        { number: "4,850+", text: "Довольных клиентов" },
         { number: "19", text: "Лет на рынке" },
         { number: "15", text: "Лет гарантии" },
     ];
@@ -65,7 +65,7 @@ function Footer() {
                         "@context": "https://schema.org",
                         "@type": "LocalBusiness",
                         "name": "Натяжные потолки Ростов-на-Дону",
-                        "description": "Установка натяжных потолков в Ростове-на-Дону и области. Более 7 лет опыта, 2000+ довольных клиентов, гарантия 15 лет.",
+                        "description": "Установка натяжных потолков в Ростове-на-Дону и области. Более 19 лет опыта, 4,850+ довольных клиентов, гарантия 15 лет.",
                         "address": {
                             "@type": "PostalAddress",
                             "addressLocality": "Ростов-на-Дону",
@@ -286,7 +286,7 @@ function Footer() {
                                 © {currentYear} Натяжные потолки Ростов-на-Дону. Все права защищены.
                             </p>
                             <nav className="footer__legal">
-                                <Link href="/privacy" className="footer__legal-link">Политика конфиденциальности</Link>
+                                <Link href="/privacy-policy" className="footer__legal-link">Политика конфиденциальности</Link>
                                 <Link href="/terms" className="footer__legal-link">Пользовательское соглашение</Link>
                             </nav>
                         </div>

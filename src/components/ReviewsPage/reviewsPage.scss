@@ -35,48 +35,7 @@
   }
 }
 
-.telegram-cta {
-  padding: 24px 0 8px;
 
-  .tg-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 18px 20px;
-    border-radius: 16px;
-    background: linear-gradient(90deg, rgba(#e0f2fe, 0.7), rgba(#dbeafe, 0.7));
-    border: 1px solid rgba($blue-color, 0.15);
-    text-decoration: none;
-    @include smooth-transition(box-shadow);
-
-    &:hover {
-      box-shadow: 0 10px 35px rgba($blue-color, 0.15);
-    }
-
-    &__icon {
-      flex: 0 0 auto;
-    }
-    &__content {
-      h2 {
-        font-size: 24px;
-        margin-bottom: 6px;
-        color: #0f172a;
-      }
-      p { color: $text-secondary; }
-    }
-    &__btn {
-      display: inline-block;
-      margin-top: 10px;
-      background: $blue-color;
-      color: $white;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 600;
-      @include smooth-transition(background-color);
-      &:hover { background: color.adjust($blue-color, $lightness: -6%); }
-    }
-  }
-}
 
 .reviews-list {
   padding: 28px 0 56px;

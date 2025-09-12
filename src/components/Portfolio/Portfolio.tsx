@@ -213,7 +213,11 @@ function Portfolio({ city, content }: PortfolioProps) {
                         <div className="portfolio__badge-icon">🎨</div>
                     </div>
                     <h2 className="portfolio__title">
-                        {content?.title || `Примеры наших <span className="portfolio__title-accent">работ</span>`}
+                        {content?.title || (
+                    <>
+                        Примеры наших <span className="portfolio__title-accent">работ</span>
+                    </>
+                )}
                     </h2>
                     <p className="portfolio__subtitle">
                         {content?.description || `Более 1000 довольных клиентов по всему ${displayCity.nameGenitive}. 
@@ -268,7 +272,14 @@ function Portfolio({ city, content }: PortfolioProps) {
                         {portfolioData.map((item) => (
                             <div key={item.id}>
                                 <a href="#any">
-                                    <Image src={item.image} alt={item.alt} width={800} height={600} loading="lazy" />
+                                    <Image 
+                                      src={item.image} 
+                                      alt={item.alt} 
+                                      width={800} 
+                                      height={600} 
+                                      loading="lazy"
+                                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 70vw, 800px"
+                                    />
                                 </a>
                             </div>
                         ))}
@@ -320,6 +331,18 @@ function Portfolio({ city, content }: PortfolioProps) {
                             <h4 className="portfolio__info-title">Гарантия 15 лет</h4>
                             <p className="portfolio__info-text">
                                 Расширенная гарантия на все виды работ и материалы с бесплатным сервисом
+                            </p>
+                        </div>
+                        
+                        <div className="portfolio__info-card">
+                            <div className="portfolio__info-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </div>
+                            <h4 className="portfolio__info-title">Световые линии</h4>
+                            <p className="portfolio__info-text">
+                                Современные потолки со встроенными световыми линиями для создания уникальной атмосферы
                             </p>
                         </div>
                     </div>

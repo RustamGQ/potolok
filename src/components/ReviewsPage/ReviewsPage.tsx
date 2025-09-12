@@ -21,7 +21,7 @@ const mockReviews: Review[] = [
   { id: 6, name: 'Сергей', city: 'Ростов-на-Дону', date: 'Декабрь 2023', rating: 5, text: 'Понравился подход — объяснили каждый этап. Дали гарантию и чек.' },
 ];
 
-const TELEGRAM_REVIEWS_URL = 'https://t.me/rostovpotolki';
+
 
 interface ReviewsPageProps {
   city?: City;
@@ -39,34 +39,12 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ city, content }) => {
           <div className="hero-content">
             <span className="hero-badge">Отзывы</span>
             <h1>{content?.title || `Что говорят наши клиенты ${city ? `в ${city.name}` : ''}`}</h1>
-            <p>{content?.description || `Подборка реальных отзывов ${city ? `о натяжных потолках в ${city.namePrepositional}` : ''}. Ещё больше — в нашем Telegram‑канале.`}</p>
+            <p>{content?.description || `Подборка реальных отзывов ${city ? `о натяжных потолках в ${city.namePrepositional}` : ''}.`}</p>
           </div>
         </div>
       </section>
 
-      <section className="telegram-cta">
-        <div className="container">
-          <a className="tg-card" href={TELEGRAM_REVIEWS_URL} target="_blank" rel="noopener noreferrer" aria-label="Открыть наш Telegram-канал с отзывами">
-            <div className="tg-card__icon" aria-hidden>
-              <svg width="36" height="36" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="120" cy="120" r="120" fill="url(#g)"/>
-                <path d="M179 73L156 171c-2 9-8 11-16 7l-44-33-21 20c-2 2-4 3-7 3l3-48 88-79c3-3 0-4-4-2L80 126l-46-14c-10-3-10-10 2-15l133-51c8-3 15 2 10 27z" fill="#fff"/>
-                <defs>
-                  <linearGradient id="g" x1="120" y1="0" x2="120" y2="240" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#34b3ff"/>
-                    <stop offset="1" stopColor="#1e40af"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <div className="tg-card__content">
-              <h2>Реальные отзывы в Telegram</h2>
-              <p>Скриншоты переписок, голосовые, фото и видео от наших клиентов. Без накруток.</p>
-              <span className="tg-card__btn">Открыть канал</span>
-            </div>
-          </a>
-        </div>
-      </section>
+
 
       <section className="reviews-list">
         <div className="container">

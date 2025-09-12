@@ -401,7 +401,7 @@ function Header() {
                         {/* Средняя секция со статистикой */}
                         <div className="header__bottom-mobile-stats">
                             <div className="header__bottom-mobile-stat">
-                                <span className="header__bottom-mobile-stat-number">500+</span>
+                                <span className="header__bottom-mobile-stat-number">4,850+</span>
                                 <span className="header__bottom-mobile-stat-text">довольных клиентов</span>
                             </div>
                             <div className="header__bottom-mobile-stat">
@@ -468,7 +468,7 @@ function Header() {
                         </div>
                         <div className="header__bottom-center">
                             <div className="header__bottom-wrapper">
-                                <p className="header__bottom-title">500+</p>
+                                <p className="header__bottom-title">4,850+</p>
                                 <p className="header__bottom-text">ДОВОЛЬНЫХ КЛИЕНТОВ</p>
                             </div>
                             <div className="header__bottom-wrapper">

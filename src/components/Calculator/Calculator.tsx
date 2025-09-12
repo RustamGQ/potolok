@@ -310,7 +310,7 @@ export default function Calculator({ city, content }: CalculatorProps): React.Re
               <div className="calc__ctaWrap">
                 <a
                   className="calc__btn calc__btn--accent"
-                  href={`https://wa.me/79999999999?text=${whatsappText}`}
+                  href={`https://wa.me/79895234952?text=${whatsappText}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

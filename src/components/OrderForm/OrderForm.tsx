@@ -238,7 +238,7 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
           <div className="orderForm__success">
             <div className="orderForm__success-icon">✅</div>
             <h2>Заявка на замер отправлена!</h2>
-            <p>Мы свяжемся с вами в течение 15 минут для подтверждения времени замера.</p>
+            <p>➤ Мы свяжемся с вами как можно скорее!</p>
             <div className="orderForm__success-details">
               <p><strong>Номер заявки:</strong> #{orderId}</p>
               <p><strong>Выбранная дата:</strong> {formData.preferredDate}</p>

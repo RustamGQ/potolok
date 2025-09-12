@@ -37,8 +37,8 @@ function Services({ city, content }: ServicesProps) {
     const servicesData: ServiceItem[] = [
         { 
             id: 1, 
-            title: 'Матовые потолки', 
-            description: 'Классические матовые потолки с идеально ровной поверхностью. Подходят для любого интерьера и создают уютную атмосферу.', 
+            title: 'Сатиновые потолки', 
+            description: 'Классические сатиновые потолки с идеально ровной поверхностью. Подходят для любого интерьера и создают уютную атмосферу.', 
             price: 'от 405₽/м²', 
             image: '/img/work-7.jpg', 
             features: ['BAUF 205', 'Гарантия 15 лет', 'Быстрый монтаж'],
@@ -46,8 +46,8 @@ function Services({ city, content }: ServicesProps) {
         },
         { 
             id: 2, 
-            title: 'Глянцевые потолки', 
-            description: 'Блестящие глянцевые потолки с зеркальным эффектом. Визуально увеличивают пространство и создают эффект глубины.', 
+            title: 'Матовые потолки', 
+            description: 'Блестящие матовые потолки с зеркальным эффектом. Визуально увеличивают пространство и создают эффект глубины.', 
             price: 'от 415₽/м²', 
             popular: true, 
             image: '/img/work-8.jpg', 
@@ -56,8 +56,8 @@ function Services({ city, content }: ServicesProps) {
         },
         { 
             id: 3, 
-            title: 'Цветные потолки', 
-            description: 'Матовые и глянцевые потолки в любом цвете по вашему выбору. Индивидуальный подход к каждому проекту.', 
+            title: 'Сатиновые потолки', 
+            description: 'Сатиновые потолки в любом цвете по вашему выбору. Индивидуальный подход к каждому проекту.', 
             price: 'от 450₽/м²', 
             image: '/img/work-9.jpg', 
             features: ['200+ цветов', 'BAUF 205', 'Индивидуальный дизайн'],
@@ -92,9 +92,9 @@ function Services({ city, content }: ServicesProps) {
         },
         { 
             id: 7, 
-            title: 'Парящий профиль', 
-            description: 'Современные потолки с встроенной подсветкой по периметру. Создают эффект "парящего" потолка.', 
-            price: '950₽/м', 
+            title: 'Двухуровневые потолки', 
+            description: 'Двухуровневые потолки. Создают уникальный дизайн и подчеркивают стиль интерьера.', 
+            price: '4100/м', 
             image: '/img/work-13.jpg', 
             features: ['Встроенная подсветка', 'Эффект "парящего" потолка', 'Без светодиодной ленты и блока питания'],
             serviceId: 'floating'
@@ -110,36 +110,36 @@ function Services({ city, content }: ServicesProps) {
         },
         { 
             id: 9, 
-            title: 'Световые линии', 
-            description: 'Современные потолки со встроенными световыми линиями. Создают уникальную атмосферу.', 
-            price: '3800₽/м', 
+            title: 'Матовые потолки', 
+            description: 'Натяжные потолки с матовыми полотнами.', 
+            price: '350₽/м', 
             image: '/img/work-15.jpg', 
             features: ['Световые линии', 'Современный дизайн', 'Каждый угол +800₽'],
             serviceId: 'light-lines'
         },
         { 
             id: 10, 
-            title: 'Трек накладной', 
-            description: 'Накладные трековые системы освещения для натяжных потолков. Современное решение.', 
-            price: '2100₽/м', 
+            title: 'Сатиновые потолки парящий профиль', 
+            description: 'Сатиновые потолки с парящими профилями.', 
+            price: '445₽/м', 
             image: '/img/work-16.jpg', 
             features: ['Накладной монтаж', 'Современный дизайн', 'Без светильников'],
             serviceId: 'track-surface'
         },
         { 
             id: 11, 
-            title: 'Трек встроенный', 
-            description: 'Встроенные трековые системы освещения для натяжных потолков. Элегантное решение.', 
-            price: '4900₽/м', 
+            title: 'Глянцевые потолки с фотопечатью', 
+            description: 'Глянцевые потолки с фотопечатью. Создают уникальный дизайн и подчеркивают стиль интерьера.', 
+            price: '3900₽/м', 
             image: '/img/work-17.jpg', 
             features: ['Встроенный монтаж', 'Элегантный дизайн', 'Без светильников'],
             serviceId: 'track-recessed'
         },
         { 
             id: 12, 
-            title: 'Магнитные треки', 
-            description: 'Магнитные трековые системы освещения для натяжных потолков. Инновационное решение.', 
-            price: '12500₽/м', 
+            title: 'Сатиновые потолки', 
+            description: 'Сатиновые потолки. Создают уникальный дизайн и подчеркивают стиль интерьера.', 
+            price: '445₽/м', 
             image: '/img/work-18.jpg', 
             features: ['Магнитная система', 'Инновационный дизайн', 'Без светильников'],
             serviceId: 'track-magnetic'
@@ -160,7 +160,13 @@ function Services({ city, content }: ServicesProps) {
                             <span className="services__badge-text">Наши услуги</span>
                             <div className="services__badge-icon">📸</div>
                         </div>
-                        <h2 className="services__title">{content?.title || `Популярные <span className="services__title-accent">виды потолков</span> в ${displayCity.name}`}</h2>
+                        <h2 className="services__title">
+                    {content?.title || (
+                        <>
+                            Популярные <span className="services__title-accent">виды потолков</span> в {displayCity.name}
+                        </>
+                    )}
+                </h2>
                         <p className="services__subtitle">{content?.description || `Реальные фотографии работ вашего дяди. Каждый потолок — это качество и профессионализм.`}</p>
                     </div>
 
