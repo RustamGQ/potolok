@@ -178,8 +178,8 @@ function Services({ city, content }: ServicesProps) {
                                         src={s.image} 
                                         alt={s.title} 
                                         fill 
-                                        priority 
-                                        sizes="(max-width: 1024px) 100vw, 33vw"
+                                        loading="lazy"
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                     />
                                     {s.popular && <span className="serviceCard__badge">Популярно</span>}
                                     <span className="serviceCard__priceChip">{s.price}</span>

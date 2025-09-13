@@ -59,6 +59,13 @@ function Portfolio({ city, content }: PortfolioProps) {
     useEffect(() => {
         if (!carouselRef.current) return;
 
+        // Отложенный старт: ждем, пока секция станет видимой
+        const root = carouselRef.current;
+        let started = false;
+        const start = () => {
+            if (started) return;
+            started = true;
+
         // Функция инициализации карусели
         function carousel(root: HTMLElement) {
             const figure = root.querySelector("figure") as HTMLElement;
@@ -188,6 +195,17 @@ function Portfolio({ city, content }: PortfolioProps) {
 
         // Запуск карусели
         carousel(carouselRef.current);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                start();
+                observer.disconnect();
+            }
+        }, { rootMargin: '0px 0px -20% 0px', threshold: 0.2 });
+
+        observer.observe(root);
+        return () => observer.disconnect();
     }, []);
 
     return (

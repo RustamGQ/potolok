@@ -53,7 +53,7 @@ export default function JsonLd({ type }: JsonLdProps) {
       "longitude": currentCity.coordinates.lng
     } : undefined,
     "openingHours": "Mo-Su 08:00-22:00",
-    "priceRange": "405₽-1030₽",
+    "priceRange": "330₽-1030₽",
     "areaServed": {
       "@type": "City",
       "name": currentCity.name
@@ -78,11 +78,11 @@ export default function JsonLd({ type }: JsonLdProps) {
             "name": "Матовые натяжные потолки",
             "description": "Классические матовые потолки BAUF 205"
           },
-          "price": "405",
+          "price": "330",
           "priceCurrency": "RUB",
           "priceSpecification": {
             "@type": "UnitPriceSpecification",
-            "price": "405",
+            "price": "330",
             "priceCurrency": "RUB",
             "unitText": "м²"
           }
@@ -136,11 +136,11 @@ export default function JsonLd({ type }: JsonLdProps) {
     "serviceType": "Установка натяжных потолков",
     "offers": {
       "@type": "Offer",
-      "price": "405",
+      "price": "330",
       "priceCurrency": "RUB",
       "priceSpecification": {
         "@type": "UnitPriceSpecification",
-        "price": "405",
+        "price": "330",
         "priceCurrency": "RUB",
         "unitText": "м²"
       },

@@ -176,6 +176,7 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [orderId, setOrderId] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const selectedService = services.find(s => s.id === formData.service);
 
@@ -194,6 +195,7 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     try {
       const response = await fetch('/api/measurement', {
@@ -222,7 +224,7 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
       
     } catch (error) {
       console.error('Ошибка при отправке заявки:', error);
-      alert('Произошла ошибка при отправке заявки. Попробуйте еще раз или позвоните нам.');
+      setErrorMessage('Произошла ошибка при отправке заявки. Попробуйте ещё раз или позвоните нам.');
     } finally {
       setIsSubmitting(false);
     }
@@ -275,6 +277,22 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
         </div>
 
         <form onSubmit={handleSubmit} className="orderForm__form" style={{ padding: 32 }}>
+          {errorMessage && (
+            <div
+              role="alert"
+              aria-live="assertive"
+              style={{
+                background: '#fee2e2',
+                color: '#991b1b',
+                border: '1px solid #fecaca',
+                padding: '12px 14px',
+                borderRadius: 12,
+                marginBottom: 16,
+              }}
+            >
+              {errorMessage}
+            </div>
+          )}
           {step === 1 && (
             <div className="orderForm__step">
               
