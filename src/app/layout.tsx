@@ -76,14 +76,13 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${inter.variable} ${roboto.variable}`}>
       <head>
-        {/* Favicon для всех устройств */}
+        {/* Favicon: .ico + .png для кросс-браузерной поддержки */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Доп. fallback на SVG (не обязателен для Яндекса) */}
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" type="image/png" href="/favicon.svg" />
-        <link rel="shortcut icon" href="/favicon.svg" />
-        
-        {/* Apple Touch Icons */}
-        <link rel="apple-touch-icon" href="/favicon.svg" />
-        <link rel="apple-touch-icon-precomposed" href="/favicon.svg" />
         
         {/* Manifest */}
         <link rel="manifest" href="/manifest.json" />

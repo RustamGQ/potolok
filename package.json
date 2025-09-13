@@ -8,6 +8,7 @@
     "export": "next build && next export",
     "start": "next start",
     "lint": "next lint",
+    "favicons": "node scripts/generate-favicons.mjs",
     "clear": "if exist .next rmdir /s /q .next && npm cache clean --force",
     "fresh": "npm run clear && npm run dev"
   },
@@ -29,6 +30,9 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
+    "favicons": "^7.2.0",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.34.3",
     "typescript": "^5"
   }
 }
