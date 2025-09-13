@@ -51,14 +51,17 @@ function Hero({ city, content }: HeroProps) {
     const startAnimation = () => {
       if (started) return;
       started = true;
+      let rafLocal = 0;
       const animate = () => {
         const s = stateRef.current;
         s.yaw += (s.targetYaw - s.yaw) * 0.08;
         s.pitch += (s.targetPitch - s.pitch) * 0.08;
         setTransform(s.yaw, s.pitch);
-        s.raf = requestAnimationFrame(animate);
+        rafLocal = requestAnimationFrame(animate);
+        s.raf = rafLocal;
       };
-      stateRef.current.raf = requestAnimationFrame(animate);
+      rafLocal = requestAnimationFrame(animate);
+      stateRef.current.raf = rafLocal;
     };
 
     // Запускаем анимацию только когда секция видима
@@ -74,7 +77,9 @@ function Hero({ city, content }: HeroProps) {
 
     return () => {
       observer.disconnect();
-      if (stateRef.current.raf) cancelAnimationFrame(stateRef.current.raf);
+      // Используем локальную копию кадра, чтобы избежать предупреждения eslint
+      const rafId = stateRef.current.raf;
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 

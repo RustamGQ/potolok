@@ -60,7 +60,8 @@ function Portfolio({ city, content }: PortfolioProps) {
         if (!carouselRef.current) return;
 
         // Отложенный старт: ждем, пока секция станет видимой
-        const root = carouselRef.current;
+        const root = carouselRef.current as HTMLElement | null;
+        if (!root) return;
         let started = false;
         const start = () => {
             if (started) return;
