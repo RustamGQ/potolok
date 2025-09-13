@@ -77,9 +77,9 @@ function Hero({ city, content }: HeroProps) {
 
     return () => {
       observer.disconnect();
-      // Используем локальную копию кадра, чтобы избежать предупреждения eslint
-      const rafId = stateRef.current.raf;
-      if (rafId) cancelAnimationFrame(rafId);
+      // Сохраняем локальную ссылку на идентификатор кадра
+      const { raf } = stateRef.current;
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 

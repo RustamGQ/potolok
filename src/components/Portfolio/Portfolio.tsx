@@ -194,8 +194,8 @@ function Portfolio({ city, content }: PortfolioProps) {
             }, { passive: false });
         }
 
-        // Запуск карусели
-        carousel(carouselRef.current);
+        // Запуск карусели (root гарантированно не null)
+        carousel(root);
         };
 
         const observer = new IntersectionObserver((entries) => {
