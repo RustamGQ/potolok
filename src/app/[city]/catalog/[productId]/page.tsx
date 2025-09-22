@@ -182,6 +182,44 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 </div>
               </div>
             </div>
+
+            <div className="city-specific-info">
+              <h3>Установка в {city.name}</h3>
+              <div className="city-info-content">
+                <p>
+                  Установка {product.name.toLowerCase()} в {city.name} выполняется нашими опытными мастерами. 
+                  Мы работаем во всех районах города и области, обеспечивая качественный монтаж с гарантией 3 года.
+                </p>
+                <div className="city-benefits">
+                  <div className="benefit-item">
+                    <strong>Бесплатный замер</strong>
+                    <span>Выезд мастера в {city.name} и область</span>
+                  </div>
+                  <div className="benefit-item">
+                    <strong>Быстрый монтаж</strong>
+                    <span>Установка за 1-2 дня в зависимости от площади</span>
+                  </div>
+                  <div className="benefit-item">
+                    <strong>Гарантия качества</strong>
+                    <span>3 года гарантии на все работы и материалы</span>
+                  </div>
+                  <div className="benefit-item">
+                    <strong>Доступные цены</strong>
+                    <span>Конкурентные цены для жителей {city.name}</span>
+                  </div>
+                </div>
+                {city.workExamples && (
+                  <div className="work-examples">
+                    <p><strong>Наш опыт в {city.name}:</strong> {city.workExamples}</p>
+                  </div>
+                )}
+                {city.coverage && (
+                  <div className="coverage-info">
+                    <p><strong>Зона обслуживания:</strong> {city.coverage}</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 

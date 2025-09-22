@@ -67,7 +67,8 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
     
     return generateSEOMeta(city, product.name, 
       `${product.name} в ${city.name} - ${product.seoTitle}`,
-      `${product.seoDescription} Установка в ${city.name}. Цены от ${product.price.min}${product.price.unit}.`
+      `${product.seoDescription} Установка в ${city.name}. Цены от ${product.price.min}${product.price.unit}.`,
+      productId
     );
   }
   
@@ -240,8 +241,9 @@ export function generateSitemap() {
       priority: 0.9
     });
     
-    // Страницы отдельных продуктов
-    for (const product of catalogProducts) {
+    // Страницы отдельных продуктов (только топ-10 для каждого города)
+    const topProducts = catalogProducts.slice(0, 10);
+    for (const product of topProducts) {
       sitemap.push({
         url: `https://potolkivip-rnd.ru/${city.slug}/catalog/${product.id}`,
         lastModified: new Date(),

@@ -140,6 +140,7 @@ export function generateCityContent(city: City) {
   const createUniqueDescription = (baseTemplate: string) => {
     let description = replaceCity(baseTemplate);
     
+    // Добавляем уникальные данные города
     if (workExamples) {
       description += ` ${workExamples}.`;
     }
@@ -150,6 +151,26 @@ export function generateCityContent(city: City) {
     
     if (coverage) {
       description += ` ${coverage}.`;
+    }
+    
+    // Добавляем уникальные детали в зависимости от города
+    const citySpecificDetails = {
+      'Ростов-на-Дону': 'Работаем во всех районах города и области. Быстрая доставка материалов.',
+      'Батайск': 'Специализируемся на установке в новых микрорайонах. Современные технологии монтажа.',
+      'Аксай': 'Обслуживаем частные дома и квартиры. Индивидуальный подход к каждому клиенту.',
+      'Новочеркасск': 'Работаем с историческими зданиями. Опыт монтажа в сложных условиях.',
+      'Шахты': 'Специальные условия для жителей города. Быстрый монтаж за 1 день.',
+      'Таганрог': 'Работаем на побережье. Устойчивые к влажности материалы.',
+      'Волгодонск': 'Специализируемся на промышленных объектах. Большой опыт работы.',
+      'Каменск-Шахтинский': 'Работаем в частном секторе. Доступные цены для всех.',
+      'Новошахтинск': 'Современные технологии монтажа. Гарантия качества 3 года.',
+      'Зерноград': 'Специализируемся на сельских домах. Надежные и долговечные решения.',
+      'Сальск': 'Работаем с любыми типами помещений. Профессиональный подход.'
+    };
+    
+    const cityDetail = citySpecificDetails[city.name as keyof typeof citySpecificDetails];
+    if (cityDetail) {
+      description += ` ${cityDetail}`;
     }
     
     return description;
@@ -188,18 +209,35 @@ export function generateCityContent(city: City) {
 }
 
 // Генерация SEO мета-тегов для страниц
-export function generateSEOMeta(city: City, page: string, customTitle?: string, customDescription?: string) {
+export function generateSEOMeta(city: City, page: string, customTitle?: string, customDescription?: string, productId?: string) {
   const baseTitle = customTitle || `${page} - Натяжные потолки ${city.name}`;
   const baseDescription = customDescription || `Профессиональная установка натяжных потолков в ${city.name}. ${page} от опытных мастеров. Бесплатный замер, качественный монтаж, гарантия.`;
+  const siteUrl = 'https://potolkivip-rnd.ru';
+  
+  // Определяем правильный путь для страницы
+  let pagePath: string;
+  if (productId) {
+    // Для страниц продуктов
+    pagePath = `/${city.slug}/catalog/${productId}`;
+  } else if (page.toLowerCase() === 'главная') {
+    // Для главной страницы города
+    pagePath = `/${city.slug}`;
+  } else {
+    // Для остальных страниц
+    pagePath = `/${city.slug}/${page.toLowerCase()}`;
+  }
   
   return {
     title: baseTitle,
     description: baseDescription,
     keywords: `натяжные потолки ${city.name}, установка потолков ${city.name}, потолки ${city.name}, монтаж потолков ${city.name}, ${page.toLowerCase()} ${city.name}`,
+    alternates: {
+      canonical: `${siteUrl}${pagePath}`
+    },
     openGraph: {
       title: baseTitle,
       description: baseDescription,
-      url: `https://yourdomain.com/${city.slug}/${page.toLowerCase()}`,
+      url: `${siteUrl}${pagePath}`,
       siteName: `Натяжные потолки ${city.name}`,
       locale: 'ru_RU',
       type: 'website'

@@ -60,9 +60,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://potolkivip-rnd.ru/',
   },
-  other: {
-    'canonical': 'https://potolkivip-rnd.ru/',
-  },
 };
 
 // ID Google Analytics (замените на ваш)
