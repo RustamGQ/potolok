@@ -1,4 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Политика конфиденциальности - ПОТОЛКИ',
+  description: 'Политика конфиденциальности сайта potolkivip-rnd.ru. Обработка персональных данных, защита информации.',
+  alternates: {
+    canonical: 'https://potolkivip-rnd.ru/privacy-policy',
+  },
+};
 
 export default function PrivacyPolicy() {
   return (

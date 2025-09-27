@@ -1,5 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Пользовательское соглашение - ПОТОЛКИ',
+  description: 'Пользовательское соглашение сайта potolkivip-rnd.ru. Условия использования, ответственность, обработка данных.',
+  alternates: {
+    canonical: 'https://potolkivip-rnd.ru/terms',
+  },
+};
 
 export default function Terms() {
   return (

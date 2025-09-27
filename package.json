@@ -1,6 +1,6 @@
 {
   "name": "potolki",
-  "version": "0.1.0",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,7 +10,9 @@
     "lint": "next lint",
     "favicons": "node scripts/generate-favicons.mjs",
     "clear": "if exist .next rmdir /s /q .next && npm cache clean --force",
-    "fresh": "npm run clear && npm run dev"
+    "fresh": "npm run clear && npm run dev",
+    "update-deps": "npm update && npm audit fix",
+    "build-analyze": "ANALYZE=true npm run build"
   },
   "dependencies": {
     "next": "15.4.5",

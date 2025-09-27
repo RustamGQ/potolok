@@ -20,11 +20,15 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    console.log('Получен запрос на замер:', body);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Получен запрос на замер:', body);
+    }
     
     // Валидация данных
     if (!body.name || !body.phone || !body.address || !body.preferredDate || !body.preferredTime) {
-      console.log('Ошибка валидации: не все поля заполнены');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Ошибка валидации: не все поля заполнены');
+      }
       return NextResponse.json(
         { error: 'Не все обязательные поля заполнены' },
         { status: 400 }
@@ -40,7 +44,9 @@ export async function POST(request: NextRequest) {
       type: 'measurement'
     };
 
-    console.log('Новая заявка на замер:', orderData);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Новая заявка на замер:', orderData);
+    }
 
     // Отправка уведомления на телефон (здесь будет интеграция с SMS сервисом)
     await sendSMSNotification(orderData);
@@ -49,10 +55,14 @@ export async function POST(request: NextRequest) {
     try {
       const emailSent = await sendMeasurementEmail(orderData);
       if (!emailSent) {
-        console.log('⚠️ Email не отправлен, но заявка сохранена');
+        if (process.env.NODE_ENV === 'development') {
+          console.log('⚠️ Email не отправлен, но заявка сохранена');
+        }
       }
     } catch (emailError) {
-      console.log('⚠️ Email отправка временно отключена:', emailError);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('⚠️ Email отправка временно отключена:', emailError);
+      }
     }
 
     return NextResponse.json({
@@ -62,7 +72,9 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Ошибка при создании заявки на замер:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Ошибка при создании заявки на замер:', error);
+    }
     return NextResponse.json(
       { error: 'Внутренняя ошибка сервера' },
       { status: 500 }
@@ -72,7 +84,8 @@ export async function POST(request: NextRequest) {
 
 async function sendSMSNotification(orderData: MeasurementOrderData) {
   // Здесь будет интеграция с SMS сервисом (например, SMS.ru, Twilio)
-  console.log('📱 SMS уведомление отправлено:', {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('📱 SMS уведомление отправлено:', {
     to: '+79895234952', // Ваш номер телефона
     message: `Новая заявка на замер #${orderData.id}
 Имя: ${orderData.name}
@@ -81,7 +94,8 @@ async function sendSMSNotification(orderData: MeasurementOrderData) {
 Дата: ${orderData.preferredDate} ${orderData.preferredTime}
 Тип потолка: ${orderData.service}
 Площадь: ${orderData.area} м²`
-  });
+    });
+  }
 }
 
 

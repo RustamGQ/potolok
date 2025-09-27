@@ -27,6 +27,14 @@ export const metadata: Metadata = {
   title: "🏠 Натяжные потолки в Ростове-на-Дону от 330₽/м² | Бесплатный замер | ПОТОЛКИ",
   description: "🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! ✨ Бесплатный замер и выезд мастера! ⚡ Монтаж за 1 день! 🛡️ Гарантия 3 года! 💰 Цены от 330₽/м²! 📞 Звоните 8-800-XXX-XX-XX прямо сейчас! 🎨 Каталог потолков • 🛠️ Услуги • 📸 Наши работы • ⭐ Отзывы • ❓ FAQ • 🧮 Калькулятор",
   keywords: "натяжные потолки ростов, потолки ростов, установка потолков ростов, натяжные потолки батайск, потолки аксай, цены на потолки, потолки от производителя, натяжные потолки батайск, натяжные потолки аксай, натяжные потолки ростов-на-дону, потолки ростов-на-дону, потолки батайск, потолки аксай",
+  authors: [{ name: "ПОТОЛКИ - Натяжные потолки Ростов-на-Дону" }],
+  creator: "ПОТОЛКИ",
+  publisher: "ПОТОЛКИ",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
       openGraph: {
       type: 'website',
       locale: 'ru_RU',
@@ -56,9 +64,6 @@ export const metadata: Metadata = {
     title: "🏠 Натяжные потолки в Ростове-на-Дону от 330₽/м² | Бесплатный замер | ПОТОЛКИ",
     description: "🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! ✨ Бесплатный замер и выезд мастера! ⚡ Монтаж за 1 день! 🛡️ Гарантия 3 года! 💰 Цены от 330₽/м²! 📞 Звоните 8-800-XXX-XX-XX прямо сейчас! 🎨 Каталог потолков • 🛠️ Услуги • 📸 Наши работы • ⭐ Отзывы • ❓ FAQ • 🧮 Калькулятор",
     images: ['https://potolkivip-rnd.ru/img/work-1.webp'],
-  },
-  alternates: {
-    canonical: 'https://potolkivip-rnd.ru/',
   },
 };
 
@@ -90,14 +95,33 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         
         {/* Кэширование и индексация */}
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta name="bingbot" content="index, follow" />
         {/* Явное резервное описание на случай отсутствия метаданных страницы */}
         <meta name="description" content="🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! Бесплатный замер, монтаж за 1 день, гарантия. Цены от 330₽/м²." />
+        
+        {/* Дополнительные мета-теги для улучшения SEO */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        
+        {/* Структурированные данные для улучшения поисковой выдачи */}
+        <meta name="application-name" content="ПОТОЛКИ" />
+        <meta name="msapplication-TileColor" content="#2563eb" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
         
         {/* Hreflang для лучшей индексации */}
         <link rel="alternate" hrefLang="ru" href="https://potolkivip-rnd.ru/" />
         <link rel="alternate" hrefLang="x-default" href="https://potolkivip-rnd.ru/" />
+        
+        {/* Preconnect для улучшения производительности */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://api.airtable.com" />
+        <link rel="dns-prefetch" href="https://api.sendgrid.com" />
       </head>
       <body className={inter.className}>
         <CityProvider>

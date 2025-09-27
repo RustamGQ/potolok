@@ -1,5 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Согласие на обработку персональных данных - ПОТОЛКИ',
+  description: 'Согласие на обработку персональных данных сайта potolkivip-rnd.ru. Условия сбора и использования данных.',
+  alternates: {
+    canonical: 'https://potolkivip-rnd.ru/personal-data-consent',
+  },
+};
 
 export default function PersonalDataConsent() {
   return (

@@ -215,15 +215,28 @@ export default function OrderForm({ initialService, initialArea, onClose }: Orde
         throw new Error(result.error || 'Ошибка при отправке заявки');
       }
 
-      console.log('Заявка на замер успешно отправлена:', result);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Заявка на замер успешно отправлена:', result);
+      }
       setOrderId(result.orderId);
       setIsSubmitted(true);
       
       // Отслеживаем успешную отправку формы
       trackFormSubmission('measurement_form');
       
+      // Отправка события в Google Analytics
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'form_submit', {
+          event_category: 'engagement',
+          event_label: 'measurement_request',
+          value: formData.area,
+        });
+      }
+      
     } catch (error) {
-      console.error('Ошибка при отправке заявки:', error);
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Ошибка при отправке заявки:', error);
+      }
       setErrorMessage('Произошла ошибка при отправке заявки. Попробуйте ещё раз или позвоните нам.');
     } finally {
       setIsSubmitting(false);

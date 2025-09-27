@@ -8,10 +8,20 @@ const nextConfig: NextConfig = {
   // 🚀 Оптимизация производительности
   experimental: {
     optimizePackageImports: ['@next/font'],
+    turbo: {
+      rules: {
+        '*.scss': {
+          loaders: ['sass-loader'],
+          as: '*.css',
+        },
+      },
+    },
   },
 
   // Сжатие и оптимизация
   compress: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
 
   // Оптимизация изображений
   images: {

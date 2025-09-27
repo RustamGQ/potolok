@@ -51,10 +51,14 @@ async function sendToAirtable(orderData: EmailData) {
       const text = await response.text();
       throw new Error(`Airtable API error: ${response.status} ${text}`);
     }
-    console.log('🟦 Заявка успешно записана в Airtable');
+    if (process.env.NODE_ENV === 'development') {
+      console.log('🟦 Заявка успешно записана в Airtable');
+    }
     return true;
   } catch (error) {
-    console.error('❌ Ошибка записи в Airtable:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('❌ Ошибка записи в Airtable:', error);
+    }
     return false;
   }
 }
@@ -134,10 +138,14 @@ export async function sendMeasurementEmail(orderData: EmailData) {
       const text = await response.text();
       throw new Error(`SendGrid API error: ${response.status} ${text}`);
     }
-    console.log('📧 Email уведомление успешно отправлено через SendGrid API на:', ADMIN_EMAIL);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('📧 Email уведомление успешно отправлено через SendGrid API на:', ADMIN_EMAIL);
+    }
     return true;
   } catch (error) {
-    console.error('❌ Ошибка отправки email через SendGrid API:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('❌ Ошибка отправки email через SendGrid API:', error);
+    }
     return false;
   }
 }

@@ -26,27 +26,3 @@ export default function OrderFormTrigger({ className, children, initialService }
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,5 +5,27 @@
   "display": "standalone",
   "background_color": "#2563eb",
   "theme_color": "#2563eb",
-  "description": "Натяжные потолки в Ростове-на-Дону, Батайске, Аксае и области. Бесплатный замер, монтаж за 1 день, гарантия 3 года. Цены от 330₽/м²."
+  "description": "Натяжные потолки в Ростове-на-Дону, Батайске, Аксае и области. Бесплатный замер, монтаж за 1 день, гарантия 3 года. Цены от 330₽/м².",
+  "categories": ["business", "productivity"],
+  "lang": "ru",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
 }

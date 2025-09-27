@@ -41,7 +41,9 @@ export async function POST(request: NextRequest) {
       status: 'new'
     };
 
-    console.log('Новый заказ получен:', orderData);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Новый заказ получен:', orderData);
+    }
 
     // Здесь можно добавить:
     // 1. Сохранение в базу данных
@@ -59,7 +61,9 @@ export async function POST(request: NextRequest) {
     });
 
   } catch (error) {
-    console.error('Ошибка при создании заказа:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Ошибка при создании заказа:', error);
+    }
     return NextResponse.json(
       { error: 'Внутренняя ошибка сервера' },
       { status: 500 }
@@ -69,7 +73,8 @@ export async function POST(request: NextRequest) {
 
 async function sendNotification(orderData: OrderData) {
   // Имитация отправки уведомления
-  console.log('Отправка уведомления о новом заказе:', {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Отправка уведомления о новом заказе:', {
     to: 'admin@potolkivip-rnd.ru',
     subject: `Новый заказ #${orderData.id}`,
     body: `
@@ -93,7 +98,8 @@ async function sendNotification(orderData: OrderData) {
       
       Стоимость: ${orderData.totalPrice} ₽
     `
-  });
+    });
+  }
 }
 
 
