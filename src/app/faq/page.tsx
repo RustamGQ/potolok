@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     url: 'https://potolkivip-rnd.ru/faq',
+    siteName: 'ПОТОЛКИ'
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Частые вопросы - Натяжные потолки',
+    description: 'Ответы на частые вопросы о натяжных потолках.',
   },
   alternates: {
     canonical: 'https://potolkivip-rnd.ru/faq',

@@ -113,6 +113,12 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#2563eb" />
         <meta name="msapplication-config" content="/browserconfig.xml" />
         
+        {/* Geo локация для улучшения локального SEO */}
+        <meta name="geo.region" content="RU-ROS" />
+        <meta name="geo.placename" content="Ростов-на-Дону" />
+        <meta name="geo.position" content="47.222078;39.720358" />
+        <meta name="ICBM" content="47.222078, 39.720358" />
+        
         {/* Hreflang для лучшей индексации */}
         <link rel="alternate" hrefLang="ru" href="https://potolkivip-rnd.ru/" />
         <link rel="alternate" hrefLang="x-default" href="https://potolkivip-rnd.ru/" />

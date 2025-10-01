@@ -12,6 +12,12 @@ export const metadata = {
     type: "website",
     locale: "ru_RU",
     url: "https://potolkivip-rnd.ru/calculator",
+    siteName: 'ПОТОЛКИ'
+  },
+  twitter: {
+    card: 'summary',
+    title: "Калькулятор натяжных потолков — точный онлайн расчёт",
+    description: "Онлайн калькулятор стоимости натяжного потолка.",
   },
   alternates: {
     canonical: "https://potolkivip-rnd.ru/calculator",

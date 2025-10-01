@@ -14,6 +14,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ru_RU',
     url: 'https://potolkivip-rnd.ru/about',
+    siteName: 'ПОТОЛКИ'
+  },
+  twitter: {
+    card: 'summary',
+    title: 'О компании - Натяжные потолки ПОТОЛКИ',
+    description: 'О компании "ПОТОЛКИ" - профессиональная установка натяжных потолков.',
   },
   alternates: {
     canonical: 'https://potolkivip-rnd.ru/about',

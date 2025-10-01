@@ -9,7 +9,14 @@ export const metadata: Metadata = {
     title: 'Каталог натяжных потолков - ПОТОЛКИ',
     description: 'Каталог натяжных потолков с фильтрацией по типам, текстурам и помещениям. Выберите подходящий потолок для вашего интерьера.',
     type: 'website',
-    locale: 'ru_RU'
+    locale: 'ru_RU',
+    url: 'https://potolkivip-rnd.ru/catalog',
+    siteName: 'ПОТОЛКИ'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Каталог натяжных потолков - ПОТОЛКИ',
+    description: 'Каталог натяжных потолков с фильтрацией по типам, текстурам и помещениям.',
   },
   alternates: {
     canonical: 'https://potolkivip-rnd.ru/catalog'

@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  
+  // Отключаем поддержку старых браузеров для уменьшения legacy JS
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 
   // Оптимизация изображений
   images: {
@@ -40,7 +45,7 @@ const nextConfig: NextConfig = {
   },
 
   // Кэширование
-  generateEtags: false,
+  generateEtags: true,
 
   // Настройка кэширования сборки
   onDemandEntries: {
@@ -72,6 +77,10 @@ const nextConfig: NextConfig = {
 
       // Минификация CSS
       config.optimization.minimize = true;
+      
+      // Удаляем неиспользуемый CSS
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = true;
     }
     return config;
   },
