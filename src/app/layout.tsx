@@ -26,7 +26,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://potolkivip-rnd.ru'),
   title: "🏠 Натяжные потолки в Ростове-на-Дону от 330₽/м² | Бесплатный замер | ПОТОЛКИ",
   description: "🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! ✨ Бесплатный замер и выезд мастера! ⚡ Монтаж за 1 день! 🛡️ Гарантия 3 года! 💰 Цены от 330₽/м²! 📞 Звоните 8-800-XXX-XX-XX прямо сейчас! 🎨 Каталог потолков • 🛠️ Услуги • 📸 Наши работы • ⭐ Отзывы • ❓ FAQ • 🧮 Калькулятор",
-  keywords: "натяжные потолки ростов, потолки ростов, установка потолков ростов, натяжные потолки батайск, потолки аксай, цены на потолки, потолки от производителя, натяжные потолки батайск, натяжные потолки аксай, натяжные потолки ростов-на-дону, потолки ростов-на-дону, потолки батайск, потолки аксай",
+  keywords: "натяжные потолки ростов, потолки ростов, установка потолков ростов, натяжные потолки батайск, потолки аксай, цены на потолки, потолки от производителя, натяжные потолки батайск, натяжные потолки аксай, натяжные потолки ростов-на-дону, потолки ростов-на-дону, потолки батайск, потолки аксай, монтаж потолков ростов, натяжные потолки цена ростов 2025",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+    yandex: process.env.NEXT_PUBLIC_YANDEX_VERIFICATION,
+  },
   authors: [{ name: "ПОТОЛКИ - Натяжные потолки Ростов-на-Дону" }],
   creator: "ПОТОЛКИ",
   publisher: "ПОТОЛКИ",
@@ -64,6 +68,13 @@ export const metadata: Metadata = {
     title: "🏠 Натяжные потолки в Ростове-на-Дону от 330₽/м² | Бесплатный замер | ПОТОЛКИ",
     description: "🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! ✨ Бесплатный замер и выезд мастера! ⚡ Монтаж за 1 день! 🛡️ Гарантия 3 года! 💰 Цены от 330₽/м²! 📞 Звоните 8-800-XXX-XX-XX прямо сейчас! 🎨 Каталог потолков • 🛠️ Услуги • 📸 Наши работы • ⭐ Отзывы • ❓ FAQ • 🧮 Калькулятор",
     images: ['https://potolkivip-rnd.ru/img/work-1.webp'],
+    creator: '@potolki_rnd',
+    site: '@potolki_rnd',
+  },
+  other: {
+    'revisit-after': '7 days',
+    'rating': 'general',
+    'distribution': 'global',
   },
 };
 
@@ -128,6 +139,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://api.airtable.com" />
         <link rel="dns-prefetch" href="https://api.sendgrid.com" />
+        
+        {/* Дополнительные мета-теги для поисковиков */}
+        <meta name="author" content="ПОТОЛКИ - Натяжные потолки Ростов-на-Дону" />
+        <meta name="copyright" content="ПОТОЛКИ 2025" />
+        <meta name="language" content="Russian" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="coverage" content="Worldwide" />
       </head>
       <body className={inter.className}>
         <CityProvider>

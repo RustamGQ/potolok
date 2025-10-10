@@ -7,15 +7,7 @@ const nextConfig: NextConfig = {
 
   // 🚀 Оптимизация производительности
   experimental: {
-    optimizePackageImports: ['@next/font'],
-    turbo: {
-      rules: {
-        '*.scss': {
-          loaders: ['sass-loader'],
-          as: '*.css',
-        },
-      },
-    },
+    optimizePackageImports: ['@next/font', 'react-icons'],
   },
 
   // Сжатие и оптимизация
@@ -25,7 +17,20 @@ const nextConfig: NextConfig = {
   
   // Отключаем поддержку старых браузеров для уменьшения legacy JS
   compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
+    removeConsole: process.env.NODE_ENV === 'production' ? {
+      exclude: ['error'],
+    } : false,
+  },
+  
+  
+  // Turbopack настройки (новая стабильная версия)
+  turbopack: {
+    rules: {
+      '*.scss': {
+        loaders: ['sass-loader'],
+        as: '*.css',
+      },
+    },
   },
 
   // Оптимизация изображений
@@ -34,6 +39,10 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000, // 1 год кэширования
+    dangerouslyAllowSVG: false,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
       {
         protocol: 'https',
@@ -54,6 +63,9 @@ const nextConfig: NextConfig = {
     // количество страниц, которые должны быть одновременно загружены в памяти
     pagesBufferLength: 2,
   },
+  
+  // Оптимизация статических ассетов
+  assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
 
   // Оптимизация webpack для CSS
   webpack: (config, { dev, isServer }) => {
@@ -78,9 +90,31 @@ const nextConfig: NextConfig = {
       // Минификация CSS
       config.optimization.minimize = true;
       
-      // Удаляем неиспользуемый CSS
+      // Удаляем неиспользуемый CSS и JS
       config.optimization.usedExports = true;
       config.optimization.sideEffects = true;
+      
+      // Более агрессивное удаление неиспользуемого кода
+      config.optimization.providedExports = true;
+      config.optimization.concatenateModules = true;
+      
+      // Оптимизация для уменьшения размера бандла
+      config.optimization.splitChunks = {
+        chunks: 'all',
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+          common: {
+            name: 'common',
+            minChunks: 2,
+            chunks: 'all',
+            enforce: true,
+          },
+        },
+      };
     }
     return config;
   },
