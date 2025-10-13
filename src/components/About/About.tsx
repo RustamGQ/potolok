@@ -62,7 +62,7 @@ function About({ city, content }: AboutProps) {
                                     <div className="about__stat-label">лет опыта</div>
                                 </div>
                                 <div className="about__stat-card">
-                                    <div className="number">4,850+</div>
+                                    <div className="about__stat-number">4,850+</div>
                                     <div className="about__stat-label">довольных клиентов</div>
                                 </div>
                                 <div className="about__stat-card">
