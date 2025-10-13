@@ -70,23 +70,6 @@ const nextConfig: NextConfig = {
   // Оптимизация webpack для CSS
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Оптимизация CSS для production
-      config.optimization.splitChunks.cacheGroups.styles = {
-        name: 'styles',
-        test: /\.(css|scss)$/,
-        chunks: 'all',
-        enforce: true,
-        priority: 20,
-      };
-      
-      // Оптимизация для уменьшения количества CSS файлов
-      config.optimization.splitChunks.cacheGroups.vendor = {
-        test: /[\\/]node_modules[\\/]/,
-        name: 'vendors',
-        chunks: 'all',
-        priority: 10,
-      };
-
       // Минификация CSS
       config.optimization.minimize = true;
       
@@ -98,7 +81,7 @@ const nextConfig: NextConfig = {
       config.optimization.providedExports = true;
       config.optimization.concatenateModules = true;
       
-      // Оптимизация для уменьшения размера бандла
+      // Улучшенная оптимизация splitChunks
       config.optimization.splitChunks = {
         chunks: 'all',
         cacheGroups: {
@@ -106,12 +89,21 @@ const nextConfig: NextConfig = {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: 10,
           },
           common: {
             name: 'common',
             minChunks: 2,
             chunks: 'all',
             enforce: true,
+            priority: 5,
+          },
+          styles: {
+            name: 'styles',
+            test: /\.(css|scss)$/,
+            chunks: 'all',
+            enforce: true,
+            priority: 20,
           },
         },
       };
@@ -188,6 +180,19 @@ const nextConfig: NextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/css/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Content-Type',
+            value: 'text/css',
           },
         ],
       },
