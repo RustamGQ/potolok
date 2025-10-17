@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {
 
   // 🚀 Оптимизация производительности
   experimental: {
-    optimizePackageImports: ['@next/font', 'react-icons'],
+    optimizePackageImports: ['@next/font', 'react-icons', 'react-dom'],
+    scrollRestoration: true,
   },
 
   // Сжатие и оптимизация
