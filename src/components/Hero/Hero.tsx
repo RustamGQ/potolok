@@ -83,7 +83,7 @@ function Hero({ city, content }: HeroProps) {
         const { raf } = stateRef.current;
         if (raf) cancelAnimationFrame(raf);
       };
-    }, 300); // Задержка 300ms для максимального приоритета LCP
+    }, 500); // Задержка 500ms для максимального приоритета LCP
 
     return () => {
       clearTimeout(timeoutId);

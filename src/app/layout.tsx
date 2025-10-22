@@ -131,7 +131,9 @@ export default function RootLayout({
         {/* Критические стили для быстрого рендеринга */}
         <style dangerouslySetInnerHTML={{
           __html: `
+            /* Критические стили для LCP без проблемных шрифтов */
             .hero__title, .hero__subtitle, .hero__metric-number {
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
               font-display: swap;
               will-change: auto;
             }
