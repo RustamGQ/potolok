@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@next/font', 'react-icons', 'react-dom'],
     scrollRestoration: true,
+    // Дополнительная оптимизация для LCP
+    optimizeCss: false, // Отключаем для стабильности
+    webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
   },
 
   // Сжатие и оптимизация

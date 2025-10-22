@@ -138,6 +138,18 @@ export default function RootLayout({
             .hero__floating-orbs, .hero__shapes {
               will-change: transform;
             }
+            /* Приоритет для критического контента */
+            .hero__layout {
+              contain: layout style paint;
+            }
+            .hero__metrics {
+              contain: layout style;
+            }
+            /* Оптимизация рендеринга */
+            .hero__metric-card {
+              transform: translateZ(0);
+              backface-visibility: hidden;
+            }
           `
         }} />
       </head>
