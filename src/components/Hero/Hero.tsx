@@ -47,36 +47,46 @@ function Hero({ city, content }: HeroProps) {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    let started = false;
-    const startAnimation = () => {
-      if (started) return;
-      started = true;
-      let rafLocal = 0;
-      const animate = () => {
-        const s = stateRef.current;
-        s.yaw += (s.targetYaw - s.yaw) * 0.08;
-        s.pitch += (s.targetPitch - s.pitch) * 0.08;
-        setTransform(s.yaw, s.pitch);
+    // Задержка анимации для приоритета LCP
+    const timeoutId = setTimeout(() => {
+      let started = false;
+      const startAnimation = () => {
+        if (started) return;
+        started = true;
+        let rafLocal = 0;
+        const animate = () => {
+          const s = stateRef.current;
+          s.yaw += (s.targetYaw - s.yaw) * 0.08;
+          s.pitch += (s.targetPitch - s.pitch) * 0.08;
+          setTransform(s.yaw, s.pitch);
+          rafLocal = requestAnimationFrame(animate);
+          s.raf = rafLocal;
+        };
         rafLocal = requestAnimationFrame(animate);
-        s.raf = rafLocal;
+        stateRef.current.raf = rafLocal;
       };
-      rafLocal = requestAnimationFrame(animate);
-      stateRef.current.raf = rafLocal;
-    };
 
-    // Запускаем анимацию только когда секция видима
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        startAnimation();
+      // Запускаем анимацию только когда секция видима
+      const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
+          startAnimation();
+          observer.disconnect();
+        }
+      }, { rootMargin: '0px 0px -20% 0px', threshold: 0.2 });
+
+      observer.observe(root);
+
+      return () => {
         observer.disconnect();
-      }
-    }, { rootMargin: '0px 0px -20% 0px', threshold: 0.2 });
-
-    observer.observe(root);
+        // Сохраняем локальную ссылку на идентификатор кадра
+        const { raf } = stateRef.current;
+        if (raf) cancelAnimationFrame(raf);
+      };
+    }, 100); // Задержка 100ms для приоритета LCP
 
     return () => {
-      observer.disconnect();
+      clearTimeout(timeoutId);
       // Сохраняем локальную ссылку на идентификатор кадра
       const { raf } = stateRef.current;
       if (raf) cancelAnimationFrame(raf);

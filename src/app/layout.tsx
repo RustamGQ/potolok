@@ -124,7 +124,22 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://mc.yandex.ru" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
-        {/* Preload критических ресурсов только если они используются на главной странице */}
+        {/* Preload критических шрифтов для быстрого рендеринга текста */}
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" as="style" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" />
+        
+        {/* Критические стили для быстрого рендеринга */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .hero__title, .hero__subtitle, .hero__metric-number {
+              font-display: swap;
+              will-change: auto;
+            }
+            .hero__floating-orbs, .hero__shapes {
+              will-change: transform;
+            }
+          `
+        }} />
       </head>
       <body className={inter.className}>
         {/* Yandex.Metrika */}
