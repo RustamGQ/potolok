@@ -108,51 +108,23 @@ export default function RootLayout({
         {/* Кэширование и индексация */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         
-        {/* Preload критических ресурсов */}
-        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        {/* Preload критических ресурсов - только если файлы существуют */}
         <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <meta name="bingbot" content="index, follow" />
         {/* Явное резервное описание на случай отсутствия метаданных страницы */}
         <meta name="description" content="🏠 Натяжные потолки в Ростове-на-Дону от профессионалов! Бесплатный замер, монтаж за 1 день, гарантия. Цены от 330₽/м²." />
         
-        {/* Дополнительные мета-теги для улучшения SEO */}
+        {/* Критические мета-теги для производительности */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
-        {/* Структурированные данные для улучшения поисковой выдачи */}
-        <meta name="application-name" content="ПОТОЛКИ" />
-        <meta name="msapplication-TileColor" content="#2563eb" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        
-        {/* Geo локация для улучшения локального SEO */}
-        <meta name="geo.region" content="RU-ROS" />
-        <meta name="geo.placename" content="Ростов-на-Дону" />
-        <meta name="geo.position" content="47.222078;39.720358" />
-        <meta name="ICBM" content="47.222078, 39.720358" />
-        
-        {/* Дополнительные оптимизации производительности */}
-        <meta name="referrer" content="strict-origin-when-cross-origin" />
-        <meta name="color-scheme" content="light" />
-        
-        {/* Hreflang для лучшей индексации */}
-        <link rel="alternate" hrefLang="ru" href="https://potolkivip-rnd.ru/" />
-        <link rel="alternate" hrefLang="x-default" href="https://potolkivip-rnd.ru/" />
         
         {/* Preconnect для улучшения производительности */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://api.airtable.com" />
-        <link rel="dns-prefetch" href="https://api.sendgrid.com" />
+        <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         
-        {/* Дополнительные мета-теги для поисковиков */}
-        <meta name="author" content="ПОТОЛКИ - Натяжные потолки Ростов-на-Дону" />
-        <meta name="copyright" content="ПОТОЛКИ 2025" />
-        <meta name="language" content="Russian" />
-        <meta name="revisit-after" content="7 days" />
-        <meta name="coverage" content="Worldwide" />
+        {/* Preload критических ресурсов только если они используются на главной странице */}
       </head>
       <body className={inter.className}>
         {/* Yandex.Metrika */}

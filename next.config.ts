@@ -44,6 +44,8 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: false,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Приоритет WebP и AVIF для лучшего сжатия
+    loader: 'default',
     remotePatterns: [
       {
         protocol: 'https',
@@ -68,29 +70,34 @@ const nextConfig: NextConfig = {
   // Оптимизация статических ассетов
   assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
 
-  // Оптимизация webpack для CSS
+  // Оптимизация webpack для CSS и JS
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      // Минификация CSS
+      // Минификация CSS и JS
       config.optimization.minimize = true;
       
-      // Удаляем неиспользуемый CSS и JS
+      // Агрессивное удаление неиспользуемого кода
       config.optimization.usedExports = true;
-      config.optimization.sideEffects = true;
-      
-      // Более агрессивное удаление неиспользуемого кода
+      config.optimization.sideEffects = false; // Более агрессивное удаление
       config.optimization.providedExports = true;
       config.optimization.concatenateModules = true;
+      
+      // Tree shaking для лучшего удаления неиспользуемого кода
+      config.optimization.innerGraph = true;
+      config.optimization.mangleExports = true;
       
       // Улучшенная оптимизация splitChunks
       config.optimization.splitChunks = {
         chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
             priority: 10,
+            reuseExistingChunk: true,
           },
           common: {
             name: 'common',
@@ -98,6 +105,7 @@ const nextConfig: NextConfig = {
             chunks: 'all',
             enforce: true,
             priority: 5,
+            reuseExistingChunk: true,
           },
           styles: {
             name: 'styles',
@@ -105,6 +113,7 @@ const nextConfig: NextConfig = {
             chunks: 'all',
             enforce: true,
             priority: 20,
+            reuseExistingChunk: true,
           },
         },
       };
@@ -213,6 +222,10 @@ const nextConfig: NextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
+          {
+            key: 'Content-Type',
+            value: 'image/webp',
+          },
         ],
       },
       {
@@ -225,6 +238,28 @@ const nextConfig: NextConfig = {
           {
             key: 'Content-Type',
             value: 'video/mp4',
+          },
+        ],
+      },
+      {
+        source: '/fonts/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Content-Type',
+            value: 'font/woff2',
+          },
+        ],
+      },
+      {
+        source: '/favicon.ico',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },
