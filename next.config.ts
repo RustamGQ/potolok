@@ -9,8 +9,9 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ['@next/font', 'react-icons', 'react-dom'],
     scrollRestoration: true,
-    // Дополнительная оптимизация для LCP
-    optimizeCss: false, // Отключаем для стабильности
+    // Отключаем optimizeCss для стабильности сборки
+    optimizeCss: false,
+    // Включена атрибуция Web Vitals для мониторинга производительности
     webVitalsAttribution: ['CLS', 'LCP', 'FCP', 'FID', 'TTFB'],
   },
 
@@ -70,8 +71,7 @@ const nextConfig: NextConfig = {
     pagesBufferLength: 2,
   },
   
-  // Оптимизация статических ассетов
-  assetPrefix: process.env.NODE_ENV === 'production' ? undefined : undefined,
+  // Оптимизация статических ассетов (assetPrefix не требуется)
 
   // Оптимизация webpack для CSS и JS
   webpack: (config, { dev, isServer }) => {
