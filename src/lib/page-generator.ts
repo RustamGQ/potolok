@@ -110,8 +110,8 @@ export function generatePageMetadata(citySlug: string, page?: string, productId?
       );
     default:
       return generateSEOMeta(city, 'Главная', 
-        `Натяжные потолки в ${city.name} - цены от 350₽/м² | ПОТОЛКИ`,
-`Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 330₽/м².`
+        `Натяжные потолки в ${city.name} - цены от 330₽/м² | ПОТОЛКИ`,
+        `Натяжные потолки в ${city.name}. Профессиональная установка, качественные материалы, опытные мастера. Цены от 330₽/м².`
       );
   }
 }
@@ -198,9 +198,10 @@ export function generateSitemap() {
   const sitemap = [];
   
   // Корневые и статические страницы
+  const now = new Date();
   sitemap.push({
     url: `https://potolkivip-rnd.ru/`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: 'weekly' as const,
     priority: 1.0
   });
@@ -218,7 +219,7 @@ export function generateSitemap() {
   for (const page of topLevelPages) {
     sitemap.push({
       url: `https://potolkivip-rnd.ru/${page}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'monthly' as const,
       priority: 0.7
     });
@@ -228,7 +229,7 @@ export function generateSitemap() {
     // Главная страница города
     sitemap.push({
       url: `https://potolkivip-rnd.ru/${city.slug}`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 1.0
     });
@@ -236,7 +237,7 @@ export function generateSitemap() {
     // Страницы каталога
     sitemap.push({
       url: `https://potolkivip-rnd.ru/${city.slug}/catalog`,
-      lastModified: new Date(),
+      lastModified: now,
       changeFrequency: 'weekly' as const,
       priority: 0.9
     });
@@ -246,7 +247,7 @@ export function generateSitemap() {
     for (const product of topProducts) {
       sitemap.push({
         url: `https://potolkivip-rnd.ru/${city.slug}/catalog/${product.id}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly' as const,
         priority: 0.8
       });
@@ -257,7 +258,7 @@ export function generateSitemap() {
     for (const page of pages) {
       sitemap.push({
         url: `https://potolkivip-rnd.ru/${city.slug}/${page}`,
-        lastModified: new Date(),
+        lastModified: now,
         changeFrequency: 'monthly' as const,
         priority: 0.7
       });

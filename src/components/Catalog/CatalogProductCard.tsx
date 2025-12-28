@@ -37,6 +37,7 @@ export default function CatalogProductCard({ product, citySlug }: CatalogProduct
           height={300}
           className="product-image"
           loading="lazy"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
         />
         <div className="product-overlay">
           <Link 

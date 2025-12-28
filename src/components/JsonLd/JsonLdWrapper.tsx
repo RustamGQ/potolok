@@ -50,7 +50,7 @@ const faqJsonLd = [
   }
 ];
 
-const productJsonLd = (product: { name?: string; image?: string; description?: string; price?: string }) => ({
+const productJsonLd = (product: { name?: string; image?: string; description?: string; price?: string }, pathname?: string) => ({
   "@context": "https://schema.org",
   "@type": "Product",
   "name": product?.name || "Натяжной потолок",
@@ -63,9 +63,9 @@ const productJsonLd = (product: { name?: string; image?: string; description?: s
   "offers": {
     "@type": "Offer",
     "priceCurrency": "RUB",
-    "price": product?.price || "290",
+    "price": product?.price || "330",
     "availability": "https://schema.org/InStock",
-    "url": typeof window !== 'undefined' ? window.location.href : ''
+    "url": pathname ? `https://potolkivip-rnd.ru${pathname}` : "https://potolkivip-rnd.ru/"
   }
 });
 
@@ -108,7 +108,7 @@ export default function JsonLdWrapper({ product, breadcrumbs }: JsonLdWrapperPro
     };
   }
   if (product) {
-    jsonLd = productJsonLd(product);
+    jsonLd = productJsonLd(product, pathname);
   }
   if (breadcrumbs) {
     jsonLd = breadcrumbJsonLd(breadcrumbs);

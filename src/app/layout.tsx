@@ -178,7 +178,8 @@ export default function RootLayout({
             <img 
               src="https://mc.yandex.ru/watch/104688490" 
               style={{position: 'absolute', left: '-9999px'}} 
-              alt="" 
+              alt=""
+              aria-hidden="true"
             />
           </div>
         </noscript>
